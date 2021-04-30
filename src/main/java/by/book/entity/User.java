@@ -17,5 +17,5 @@ public class User {
     private String lastName;
     private LocalDateTime birthDate;
     private String password;
-    private Role role;
+    private Role f;
 }
