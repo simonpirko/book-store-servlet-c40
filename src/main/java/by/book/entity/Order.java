@@ -16,4 +16,5 @@ public class Order {
     private int totalPrice;
     private Store store;
     private Type type;
+    private OrderStatus status;
 }
