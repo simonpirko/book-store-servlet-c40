@@ -13,8 +13,4 @@ public class ConnectionDB {
                 Config.getProperty(Config.DB_LOGIN),
                 Config.getProperty(Config.DB_PASSWORD));
     }
-
-    public static void main(String[] args) throws SQLException {
-     Connection connection =   ConnectionDB.getConnection();
-    }
 }
