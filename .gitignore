@@ -115,3 +115,6 @@ fabric.properties
 hs_err_pid*
 
 #/src/main/resources/dao.properties
+
+# Mac
+.DS_Store
