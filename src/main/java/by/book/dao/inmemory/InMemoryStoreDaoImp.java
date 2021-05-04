@@ -8,7 +8,7 @@ import by.book.entity.Store;
 import java.util.ArrayList;
 import java.util.List;
 
-public class inMemoryStoreDaoImp implements StoreDao {
+public class InMemoryStoreDaoImp implements StoreDao {
     private static List<Store> stores = new ArrayList<>();
     private static long incId = 1;
 
@@ -34,7 +34,7 @@ public class inMemoryStoreDaoImp implements StoreDao {
                 return store;
             }
         }
-        throw new DaoException("Магазина с id: " + id + " несуществует");
+        throw new DaoException("Магазина с id " + id + " несуществует");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class inMemoryStoreDaoImp implements StoreDao {
                 return store;
             }
         }
-        throw new DaoException("Магазина с именем: " + name + " несуществует");
+        throw new DaoException("Магазина с именем " + name + " несуществует");
     }
 
     @Override
