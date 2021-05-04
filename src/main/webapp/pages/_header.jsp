@@ -46,13 +46,28 @@
                                 <i class="fas fa-shopping-cart ms-1" style="font-size: 30px"></i>
                             </a>
                     </li>
-                    <li class="nav-item ms-3 d-flex">
-                        <a class="nav-link d-flex justify-content-between align-items-center" href="#">
-                            <p class="m-0">Личный кабинет</p>
-                            <i class="fas fa-user ms-1" style="font-size: 30px"></i>
-                        </a>
-
-                    </li>
+                    <c:if test="${sessionScope.user == null}">
+                        <li class="nav-item ms-3 d-flex">
+                            <a class="nav-link d-flex justify-content-between align-items-center" href="#">
+                                <p class="m-0">Регистрация</p>
+                                <i class="fas fa-user ms-1" style="font-size: 30px"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item ms-3 d-flex">
+                            <a class="nav-link d-flex justify-content-between align-items-center" href="#">
+                                <p class="m-0">Авторизация</p>
+                                <i class="fas fa-user ms-1" style="font-size: 30px"></i>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:if test="${sessionScope.user != null}">
+                        <li class="nav-item ms-3 d-flex">
+                            <a class="nav-link d-flex justify-content-between align-items-center" href="#">
+                                <p class="m-0">Личный кабинет</p>
+                                <i class="fas fa-user ms-1" style="font-size: 30px"></i>
+                            </a>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
         </div>
