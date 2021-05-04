@@ -11,7 +11,7 @@ public interface BookDao {
     List<Book> getAll();
     Book getBookById(long id);
     Book getBookByName(String name);
-    List<Date> getBookByData(LocalDate date);
+    List<Book> getBookByData(LocalDate date);
     List<Book> getBookByGenre(String genre);
     List<Book> getBookByGenreAndData(String genre, LocalDate date);
     List<Book> getBookByAuthor(Author author);
@@ -19,11 +19,11 @@ public interface BookDao {
     void delete(long id);
     void updateName(long id, String name);
     void updateDescription(long id, String description);
-    void updateAuthor(long id, Author author);
+    void updateAuthors(long id, List<Author> authors);
     void updatePrice(long id, int price);
     void updateGenre (long id, String genre);
     void updatePublicationDate(long id, LocalDate date);
-    boolean contains(String name, Author author);
+    boolean contains(String name, List<Author> author);
 
 
 
