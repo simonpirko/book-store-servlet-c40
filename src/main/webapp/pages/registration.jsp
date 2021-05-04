@@ -15,59 +15,58 @@
 <jsp:include page="_header.jsp"/>
 <form action="#" method="post">
 
-    <div class="row mb-3">
-        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail">
+    <div class="col-md-3">
+        <label for="inputUsername" class="col-md-6 offset-md-9">Логин</label>
+        <input type="text" class="col-md-6 offset-md-9" id="inputUsername">
+
+    </div>
+    </div>
+
+    <div class="col-md-3">
+        <label for="validationCustom01" class="col-md-6 offset-md-9">Имя</label>
+        <input type="text" class="col-md-6 offset-md-9" id="validationCustom01" required>
+    </div>
+    </div>
+    <div class="col-md-3">
+        <label for="validationCustom02" class="col-md-6 offset-md-9">Фамилия</label>
+        <input type="text" class="col-md-6 offset-md-9" id="validationCustom02" required>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+        <label al for="userBirthDate" class="col-md-6 offset-md-9">День рождения</label>
+        <input type="date" class="col-md-6 offset-md-9" id="userBirthDate" required>
+    </div>
+    </div>
+    <div class="col-md-3">
+        <label al for="userAddress" class="col-md-6 offset-md-9">Адрес</label>
+        <input type="text" class="col-md-6 offset-md-9" id="userAddress" required>
+    </div>
+    </div>
+    <div class="col-md-3">
+        <label for="inputPassword1" class="col-md-6 offset-md-9">Пароль</label>
+
+        <input type="password" class="col-md-6 offset-md-9" id="inputPassword1">
+
+    </div>
+    </div>
+    <div class="col-md-3">
+        <label for="inputPassword2" class="col-md-6 offset-md-9">Пароль еще раз</label>
+        <input type="password" class="col-md-6 offset-md-9" id="inputPassword2">
+
+    </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="col-md-6 offset-md-9">
+            <button type="submit" style="margin: 5px" class="btn btn-primary">Зарегестрироваться</button>
         </div>
     </div>
-    <div class="row mb-3">
-        <label for="inputPassword1" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword1">
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="inputPassword2" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword2">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <label for="validationCustom01" class="form-label">First name</label>
-        <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    <div class="col-md-4">
-        <label for="validationCustom02" class="form-label">Last name</label>
-        <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    <div class="col-md-4">
-        <label for="validationCustomUsername" class="form-label">User name</label>
-        <div class="input-group has-validation">
-            <span class="input-group-text" id="inputGroupPrepend">@</span>
-            <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-            <div class="invalid-feedback">
-                Please choose a username.
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <label for="userBirthDate" class="form-label">Birth date</label>
-        <input type="date" class="form-control" id="userBirthDate" value="01.04.1997" required>
-        <div class="valid-feedback">
-        </div>
-    </div>
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary">Sign in</button>
-    </div>
+
+
 </form>
 <jsp:include page="_footer.jsp"/>
+
 
 </body>
 </html>

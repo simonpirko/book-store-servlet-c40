@@ -14,19 +14,23 @@
 <body>
 <jsp:include page="_header.jsp"/>
 <form action="#" method="post">
+    <div class="col-md-3">
+        <label for="inputUsername" class="col-md-6 offset-md-9">Логин</label>
+        <input type="text" class="col-md-6 offset-md-9" id="inputUsername">
 
-    <form class="row g-3">
-        <div class="col-md-6">
-            <label for="inputUserName" class="form-label">User name</label>
-            <input type="text" class="form-control" id="inputUserName">
+    </div>
+    <div class="col-md-3">
+        <label for="inputPassword2" class="col-md-6 offset-md-9">Пароль</label>
+        <input type="password" class="col-md-6 offset-md-9" id="inputPassword2">
+
+    </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="col-md-6 offset-md-9">
+            <button type="submit" style="margin: 5px" class="btn btn-primary">Войти</button>
         </div>
-        <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword4">
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Log in</button>
-        </div>
+    </div>
 </form>
 <jsp:include page="_footer.jsp"/>
 </body>
