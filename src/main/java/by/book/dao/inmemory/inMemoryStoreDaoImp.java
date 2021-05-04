@@ -66,11 +66,13 @@ public class inMemoryStoreDaoImp implements StoreDao {
     }
 
     @Override
-    public void save(Store store) {
+    public void save(Store store) throws DaoException {
         if (!stores.contains(store.getAddress())){
             store.setId(incId++);
             stores.add(store);
+            return;
         }
+        throw new DaoException("Такой магазин уже существует");
     }
 
     @Override

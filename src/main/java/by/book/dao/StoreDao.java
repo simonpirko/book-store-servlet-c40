@@ -14,7 +14,7 @@ public interface StoreDao {
     void update(long id, String name) throws DaoException;
     void update(long id, Address address) throws DaoException;
     void delete(long id) throws DaoException;
-    void save(Store store);
+    void save(Store store) throws DaoException;
     boolean contains(Address address);
 
 
