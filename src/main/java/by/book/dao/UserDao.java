@@ -18,7 +18,4 @@ public interface UserDao {
     void delete(long id);
     boolean containsByName(String userName);
     boolean containsByPassword(String password);
-
-
-
 }
