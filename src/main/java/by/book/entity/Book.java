@@ -17,6 +17,6 @@ public class Book {
     private String description;
     private String genre;
     private List<Comment> comments;
+    private List<Author> authors;
     private LocalDate publicationDate;
-    private Author author;
 }
