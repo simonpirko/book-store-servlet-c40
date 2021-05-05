@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-12">
                             <label for="inputDate" class="form-label">Дата рождения</label>
-                            <input type="date" class="form-control" id="inputDate" name="date" value="15.02.1999">
+                            <input type="date" class="form-control" id="inputDate" name="date" value="1999-11-20">
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-outline-success">Редактировать профиль</button>
