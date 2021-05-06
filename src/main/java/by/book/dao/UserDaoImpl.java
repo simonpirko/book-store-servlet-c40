@@ -1,6 +1,7 @@
 package by.book.dao;
 
 import by.book.entity.User;
+import by.book.exception.DaoException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,9 +21,7 @@ public class UserDaoImpl implements UserDao {
     public void updateFirstName(long id, String name) {
         User user = getById(id);
         if (user != null){
-            users.remove(user);
             user.setFirstName(name);
-            users.add(user);
         }
     }
 
@@ -30,9 +29,7 @@ public class UserDaoImpl implements UserDao {
     public void updateLastName(long id, String name) {
         User user = getById(id);
         if (user != null){
-            users.remove(user);
             user.setLastName(name);
-            users.add(user);
         }
     }
 
@@ -40,9 +37,7 @@ public class UserDaoImpl implements UserDao {
     public void updatePassword(long id, String password) {
         User user = getById(id);
         if (user != null) {
-            users.remove(user);
             user.setPassword(password);
-            users.add(user);
         }
     }
 
@@ -50,9 +45,7 @@ public class UserDaoImpl implements UserDao {
     public void updateBirthday(long id, LocalDateTime localDateTime) {
         User user = getById(id);
         if (user != null) {
-            users.remove(user);
             user.setBirthDate(localDateTime);
-            users.add(user);
         }
     }
 

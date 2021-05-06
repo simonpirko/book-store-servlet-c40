@@ -1,6 +1,7 @@
 package by.book.dao;
 
 import by.book.entity.User;
+import by.book.exception.DaoException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,7 +13,7 @@ public interface UserDao {
     void updatePassword(long id, String password);
     void updateBirthday(long id, LocalDateTime localDateTime);
     List<User> getAll();
-    User getById(long id);
+    User getById(long id) throws DaoException;
     User getByUserName(String userName);
     void delete(String userName);
     void delete(long id);
