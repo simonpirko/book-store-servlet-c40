@@ -32,6 +32,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Контакты</a>
                 </li>
+
+                <jsp:include page="_staff_menu.jsp" />
+
             </ul>
 
             <div class="d-flex">
