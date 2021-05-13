@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,10 +7,13 @@
 <jsp:include page="_header.jsp"/>
 <nav class="navbar navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="http://booklikes.com/upload/post/7/f/azure_7f770238ef1e098e3c924c8a4c83bdeb.jpg" alt=""
-                 width="600" height="200">
-        </a>
+        <div class="col-sm-10 col-sm offset-3">
+                <a class="navbar-brand" href="#">
+                    <img src="http://booklikes.com/upload/post/7/f/azure_7f770238ef1e098e3c924c8a4c83bdeb.jpg"
+                         class="center-block" alt=""
+                         width="500" height="200">
+                </a>
+        </div>
     </div>
 </nav>
 
@@ -33,17 +35,6 @@
 </tr>
 <% } %>
 </div>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/home">Список всех книг</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-    </div>
-</nav>
 
 <jsp:include page="_footer.jsp"/>
 
