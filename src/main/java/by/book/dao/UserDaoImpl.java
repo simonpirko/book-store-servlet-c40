@@ -1,15 +1,18 @@
 package by.book.dao;
 
+import by.book.entity.Address;
+import by.book.entity.Role;
 import by.book.entity.User;
 import by.book.exception.DaoException;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     private static List<User> users = new ArrayList<>();
-    private static int incId = 1;
+    private static int incId = 3;
 
     @Override
     public void save(User user) {
@@ -67,7 +70,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getByUserName(String userName) {
         for (User user : users) {
-            if (user.getUsername() == userName) {
+            if (user.getUsername().equalsIgnoreCase(userName))  {
                 return user;
             }
         }
@@ -92,7 +95,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean containsByName(String userName) {
         for (User user : users){
-            if (user.getUsername().equals(userName)){
+            if (user.getUsername().equalsIgnoreCase(userName)){
                 return true;
             }
         }
@@ -108,4 +111,10 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
+    static {
+        LocalDateTime randDate = LocalDateTime.of(2017, Month.JULY, 9, 11, 6, 22);
+        users.add(new User(1, "Moder", "Стэк", "Оверфлоувович", randDate, new Address(0, "www", 1), "1111", Role.MODERATOR));
+        users.add(new User(2, "Admin", "Отец", "Отцов", randDate, new Address(1, "www", 1), "1111", Role.ADMIN));
+    }
+
 }
