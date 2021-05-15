@@ -1,7 +1,7 @@
 package by.book.service;
 
 import by.book.dao.StoreDao;
-import by.book.dao.inmemory.InMemoryStoreDaoImp;
+import by.book.dao.inmemory.InMemoryStoreDao;
 import by.book.entity.Address;
 import by.book.entity.Store;
 import by.book.exception.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StaffStoreService {
-    private StoreDao storeDao = new InMemoryStoreDaoImp();
+    private StoreDao storeDao = new InMemoryStoreDao();
 
     public void create(String name, String street, String house) throws InvalidRequestException, DuplicateDataException, ServerErrorException {
         validationParam(name);

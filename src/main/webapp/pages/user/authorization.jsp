@@ -12,26 +12,26 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="_header.jsp"/>
-<form action="#" method="post">
+<jsp:include page="../_header.jsp"/>
+<form action="/auth" method="post">
     <div class="col-md-3">
         <label for="inputUsername" class="col-md-6 offset-md-9">Логин</label>
-        <input type="text" class="col-md-6 offset-md-9" id="inputUsername">
+        <input type="text" class="col-md-6 offset-md-9" id="inputUsername" name="login">
 
     </div>
     <div class="col-md-3">
         <label for="inputPassword2" class="col-md-6 offset-md-9">Пароль</label>
-        <input type="password" class="col-md-6 offset-md-9" id="inputPassword2">
+        <input type="password" class="col-md-6 offset-md-9" id="inputPassword2" name="password">
 
     </div>
     </div>
-
+    ${requestScope.authMessage}
     <div class="col-md-3">
         <div class="col-md-6 offset-md-9">
             <button type="submit" style="margin: 5px" class="btn btn-primary">Войти</button>
         </div>
     </div>
 </form>
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="../_footer.jsp"/>
 </body>
 </html>
