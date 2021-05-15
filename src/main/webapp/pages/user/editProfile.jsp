@@ -4,7 +4,7 @@
     <title>Редактирование профиля</title>
 </head>
 <body>
-<jsp:include page="_header.jsp" />
+<jsp:include page="../_header.jsp" />
 
 <div class="container">
     <div class="row">
@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col-md-3 mt-2 mb-2">
-            <jsp:include page="_profileButton.jsp" />
+            <jsp:include page="../_profileButton.jsp" />
         </div>
         <div class="col-md-9 mt-2 mb-2">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -104,6 +104,6 @@
     </div>
 </div>
 
-<jsp:include page="_footer.jsp" />
+<jsp:include page="../_footer.jsp" />
 </body>
 </html>

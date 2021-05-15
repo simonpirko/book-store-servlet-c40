@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="_header.jsp"/>
+<jsp:include page="../_header.jsp"/>
 <form action="/reg" method="post">
 
     <div class="col-md-3">
@@ -70,7 +70,7 @@
 
 
 </form>
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="../_footer.jsp"/>
 
 
 </body>

@@ -20,7 +20,7 @@ public class AuthorizationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/pages/authorization.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/user/authorization.jsp").forward(req, resp);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class AuthorizationServlet extends HttpServlet {
             resp.sendRedirect("/home");
         } else {
             req.setAttribute("authMessage", "Incorrect login or password");
-            getServletContext().getRequestDispatcher("/pages/authorization.jsp").forward(req, resp);
+            getServletContext().getRequestDispatcher("/pages/user/authorization.jsp").forward(req, resp);
         }
     }
 }

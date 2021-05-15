@@ -22,7 +22,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/pages/registration.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/user/registration.jsp").forward(req, resp);
     }
 
     @Override
@@ -38,12 +38,11 @@ public class RegistrationServlet extends HttpServlet {
         Address userAddress = new Address(2, userStreet, userHome);
         try {
             userService.add(userName, firstName, lastName, birthDate, userAddress, password);
-            req.setAttribute("message", "+++++++++++++");
-            req.setAttribute("list", userService.get().size());
+            req.setAttribute("message", "Successfully registrated!");
         } catch (UserDataException e) {
             req.setAttribute("message", e.getMessage());
         }
-        getServletContext().getRequestDispatcher("/pages/registration.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/user/registration.jsp").forward(req, resp);
 
     }
 }

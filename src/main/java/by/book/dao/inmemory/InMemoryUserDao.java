@@ -1,5 +1,6 @@
-package by.book.dao;
+package by.book.dao.inmemory;
 
+import by.book.dao.UserDao;
 import by.book.entity.Address;
 import by.book.entity.Role;
 import by.book.entity.User;
@@ -10,7 +11,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl implements UserDao {
+public class InMemoryUserDao implements UserDao {
     private static List<User> users = new ArrayList<>();
     private static int incId = 3;
 

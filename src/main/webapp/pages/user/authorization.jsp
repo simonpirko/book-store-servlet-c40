@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="_header.jsp"/>
+<jsp:include page="../_header.jsp"/>
 <form action="/auth" method="post">
     <div class="col-md-3">
         <label for="inputUsername" class="col-md-6 offset-md-9">Логин</label>
@@ -32,6 +32,6 @@
         </div>
     </div>
 </form>
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="../_footer.jsp"/>
 </body>
 </html>

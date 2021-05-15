@@ -1,18 +1,17 @@
 package by.book.service;
 
 import by.book.dao.UserDao;
-import by.book.dao.UserDaoImpl;
+import by.book.dao.inmemory.InMemoryUserDao;
 import by.book.entity.Address;
 import by.book.entity.Role;
 import by.book.entity.User;
 import by.book.exception.UserDataException;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.List;
 
 public class UserService {
-    private UserDao userDao = new UserDaoImpl();
+    private UserDao userDao = new InMemoryUserDao();
 
     public void add(String userName, String firstName, String lastName, LocalDateTime birthDate, Address address, String password) throws UserDataException {
         if (userName == null || firstName == null || lastName == null || birthDate == null || address == null || password == null) {

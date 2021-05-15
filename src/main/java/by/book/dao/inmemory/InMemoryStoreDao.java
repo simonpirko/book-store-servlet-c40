@@ -8,7 +8,7 @@ import by.book.entity.Store;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryStoreDaoImp implements StoreDao {
+public class InMemoryStoreDao implements StoreDao {
     private static List<Store> stores = new ArrayList<>();
     private static long incId = 1;
 
