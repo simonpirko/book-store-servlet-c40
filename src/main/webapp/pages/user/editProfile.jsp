@@ -22,6 +22,7 @@
         <div class="col-md-3 mt-2 mb-2">
             <jsp:include page="../_profileButton.jsp" />
         </div>
+
         <div class="col-md-9 mt-2 mb-2">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -38,10 +39,10 @@
 
 <%--                Edit main data tab--%>
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                    <form class="row g-3" method="post" action="/edit-profile/main">
+                    <form class="row g-3" method="post" action="/profile/editPersonalData">
                         <div class="col-md-12">
-                            <label for="inputEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="inputEmail" required name="email" value="boris99@gmail.com">
+                            <label for="userName" class="form-label">UserMane</label>
+                            <input type="text" class="form-control" id="userName" required name="userName" value="terminatorBoris99">
                         </div>
                         <div class="col-md-6">
                             <label for="inputLastName" class="form-label">Имя</label>
@@ -63,7 +64,7 @@
 
 <%--                Edit address tab--%>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <form class="row g-3" method="post" action="/edit-profile/address">
+                    <form class="row g-3" method="post" action="/profile/editAddress">
                         <div class="col-md-9">
                             <label for="inputStreet" class="form-label">Улица</label>
                             <input type="text" class="form-control" id="inputStreet" required name="street" value="Немига">
@@ -80,7 +81,7 @@
 
 <%--                Edit password tab--%>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                    <form class="row g-3" method="post" action="/edit-profile/password">
+                    <form class="row g-3" method="post" action="/profile/editPassword">
                         <div class="col-md-12">
                             <label for="inputOldPass" class="form-label">Старый пароль</label>
                             <input type="password" class="form-control" id="inputOldPass" required name="oldPassword">
@@ -99,6 +100,9 @@
                         </div>
                     </form>
                 </div>
+                    <h4>
+                        ${requestScope.message}
+                    </h4>
             </div>
         </div>
     </div>
