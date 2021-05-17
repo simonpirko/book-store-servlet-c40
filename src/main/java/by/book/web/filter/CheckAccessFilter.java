@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = { "StoreEdit", "StoreCreate", "StoreDelete", "StoreList", "BookEdit", "BookAdd", "BookManager", "BookRemove" })
+@WebFilter(servletNames = { "StoreEdit", "StoreCreate", "StoreDelete", "StoreList","AuthorAdd", "BookEdit", "BookAdd", "BookManager", "BookRemove" })
 public class CheckAccessFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
