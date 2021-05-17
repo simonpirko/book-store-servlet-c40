@@ -1,4 +1,4 @@
-package by.book.web.servlet.staffStore;
+package by.book.web.servlet.staff;
 
 import by.book.exception.InvalidRequestException;
 import by.book.exception.NotFoundException;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/staff/store/delete", name = "StoreDelete")
-public class StoreDelete extends HttpServlet {
+@WebServlet(urlPatterns = "/staff/store/delete", name = "StoreDeleteServlet")
+public class StoreDeleteServlet extends HttpServlet {
     private final StaffStoreService staffStoreService = new StaffStoreService();
 
     @Override
@@ -29,6 +29,6 @@ public class StoreDelete extends HttpServlet {
         } catch (ServerErrorException e) {
             req.setAttribute("message", "Произошла ошибка. Попробуйте повторить запрос через некоторое время");
         }
-        getServletContext().getRequestDispatcher("/pages/staffStore/storeList.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/staff/storeList.jsp").forward(req, resp);
     }
 }

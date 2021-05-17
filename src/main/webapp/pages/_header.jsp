@@ -33,7 +33,7 @@
                     <a class="nav-link" href="#">Контакты</a>
                 </li>
 
-                <jsp:include page="_staff_menu.jsp" />
+                <jsp:include page="_staffMenu.jsp" />
 
             </ul>
 

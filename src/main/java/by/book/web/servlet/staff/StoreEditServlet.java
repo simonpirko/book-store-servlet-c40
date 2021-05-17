@@ -1,4 +1,4 @@
-package by.book.web.servlet.staffStore;
+package by.book.web.servlet.staff;
 
 import by.book.entity.Store;
 import by.book.exception.InvalidRequestException;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/staff/store/edit", name = "StoreEdit")
-public class StoreEdit extends HttpServlet {
+@WebServlet(urlPatterns = "/staff/store/edit", name = "StoreEditServlet")
+public class StoreEditServlet extends HttpServlet {
     private final StaffStoreService staffStoreService = new StaffStoreService();
 
     @Override
@@ -23,7 +23,7 @@ public class StoreEdit extends HttpServlet {
         try {
             Store store = staffStoreService.getOne(req.getParameter("id"));
             req.setAttribute("store", store);
-            getServletContext().getRequestDispatcher("/pages/staffStore/storeEdit.jsp").forward(req, resp);
+            getServletContext().getRequestDispatcher("/pages/staff/storeEdit.jsp").forward(req, resp);
         } catch (NotFoundException | InvalidRequestException e) {
             resp.sendRedirect("/404");
         }
@@ -50,6 +50,6 @@ public class StoreEdit extends HttpServlet {
             resp.sendRedirect("/404");
         }
 
-        getServletContext().getRequestDispatcher("/pages/staffStore/storeEdit.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/staff/storeEdit.jsp").forward(req, resp);
     }
 }

@@ -1,4 +1,4 @@
-package by.book.web.servlet.staffStore;
+package by.book.web.servlet.staff;
 
 import by.book.exception.DuplicateDataException;
 import by.book.exception.InvalidRequestException;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/staff/store/create", name = "StoreCreate")
-public class StoreCreate extends HttpServlet {
+@WebServlet(urlPatterns = "/staff/store/create", name = "StoreCreateServlet")
+public class StoreCreateServlet extends HttpServlet {
     private StaffStoreService staffStoreService = new StaffStoreService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/pages/staffStore/storeCreate.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/staff/storeCreate.jsp").forward(req, resp);
     }
 
     @Override
@@ -36,6 +36,6 @@ public class StoreCreate extends HttpServlet {
             req.setAttribute("message", "Произошла ошибка. Попробуйте повторить запрос через некоторое время");
         }
 
-        getServletContext().getRequestDispatcher("/pages/staffStore/storeCreate.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/staff/storeCreate.jsp").forward(req, resp);
     }
 }

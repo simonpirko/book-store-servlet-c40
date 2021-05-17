@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(servletNames = {"StoreCreate", "StoreList", "StoreEdit"})
+@WebFilter(servletNames = { "StoreEditServlet", "StoreCreateServlet", "StoreDeleteServlet", "StoreListServlet", "UserListServlet", "UserEditServlet" })
 public class EncodingFilter implements Filter {
     private final String encoding = "UTF-8";
 

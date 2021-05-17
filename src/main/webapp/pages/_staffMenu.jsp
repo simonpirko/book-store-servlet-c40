@@ -7,8 +7,10 @@
       Staff меню
     </a>
     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-      <li><a class="dropdown-item" href="/staff/store">Магаизны</a></li>
+      <li><a class="dropdown-item" href="/staff/store">Список магаизны</a></li>
       <li><a class="dropdown-item" href="/staff/store/create">Добавить новый магазин</a></li>
+      <li><hr></li>
+      <li><a class="dropdown-item" href="/staff/user/all">Список пользователи</a></li>
     </ul>
   </li>
 </c:if>

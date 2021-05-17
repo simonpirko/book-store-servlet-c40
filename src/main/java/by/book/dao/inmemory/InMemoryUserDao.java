@@ -54,6 +54,14 @@ public class InMemoryUserDao implements UserDao {
     }
 
     @Override
+    public void updateRole(long id, Role role) {
+        User user = getById(id);
+        if (user != null) {
+            user.setRole(role);
+        }
+    }
+
+    @Override
     public List<User> getAll() {
         return users;
     }
