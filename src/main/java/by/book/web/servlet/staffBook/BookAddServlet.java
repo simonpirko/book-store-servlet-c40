@@ -34,7 +34,7 @@ public class BookAddServlet extends HttpServlet {
             staffBookService.save(req.getParameter("name"),req.getParameter("price"),req.getParameter("description"),req.getParameter("genre"),authors,req.getParameter("publicDate"));
             req.setAttribute("message", "Книга добавлена");
         } catch (InvalidRequestException e) {
-            req.setAttribute("message", "Неккоретные данные");
+            req.setAttribute("message", "Некорректные данные");
         } catch (DaoException e) {
             req.setAttribute("message", "Такая книга уже существует");
         } catch (NotFoundException e) {
