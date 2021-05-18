@@ -13,8 +13,6 @@
       <li><a class="dropdown-item" href="/staff/book">Книги</a></li>
       <li><hr></li>
       <li><a class="dropdown-item" href="/staff/user/all">Список пользователи</a></li>
-        <li><hr></li>
-      <li><a class="dropdown-item" href="/staff/book">Книги</a></li>
     </ul>
   </li>
 </c:if>

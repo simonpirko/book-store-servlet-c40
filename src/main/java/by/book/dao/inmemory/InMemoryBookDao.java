@@ -134,4 +134,13 @@ public class InMemoryBookDao implements BookDao {
         }
         return false;
     }
+
+    @Override
+    public boolean containsId(long id) {
+        for(Book book : bookList){
+            if(book.getId() == id)
+                return true;
+        }
+        return false;
+    }
 }

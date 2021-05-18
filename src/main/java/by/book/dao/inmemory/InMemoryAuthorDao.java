@@ -52,9 +52,18 @@ public class InMemoryAuthorDao implements AuthorDao {
     }
 
     @Override
-    public boolean contains(Author author) {
-        for(Author author1 : authorList){
-            if(author.getFirstName().equals(author1.getFirstName()) && author.getLastName().equals(author1.getLastName()))
+    public boolean contains(String fName, String lName) {
+        for(Author author : authorList){
+            if(author.getFirstName().equals(fName) && author.getLastName().equals(lName))
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean containsId(long id) {
+        for(Author author : authorList){
+            if(author.getId() == id)
                 return true;
         }
         return false;

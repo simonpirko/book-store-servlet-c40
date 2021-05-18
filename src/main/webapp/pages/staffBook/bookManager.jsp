@@ -37,7 +37,6 @@
                     <th scope="col">Жанр</th>
                     <th scope="col">Авторы</th>
                     <th scope="col">Дата публикации</th>
-                    <th scope="col">Описание</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,9 +46,12 @@
                         <th>${book.name}</th>
                         <th>${book.price}</th>
                         <th>${book.genre}</th>
-                        <th>${book.authors}</th>
+                        <th>
+                        <c:forEach items="${book.authors}" var="author">
+                        ${author.firstName} ${author.lastName}<br></br>
+                        </c:forEach>
+                        </th>
                         <th>${book.publicationDate}</th>
-                        <th>${book.description}</th>
                         <td>
                             <form method="post" action="/staff/book/remove" onsubmit="return confirm('Вы действительно хотите удалить данную книгу?')">
 
