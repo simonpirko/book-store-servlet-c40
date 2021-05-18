@@ -6,11 +6,11 @@ import by.book.entity.Book;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class InMemoryBookDao implements BookDao {
     private static List<Book> bookList = new ArrayList<>();
+    private static long id = 1;
     @Override
     public List<Book> getAll() {
         return bookList;
@@ -78,7 +78,10 @@ public class InMemoryBookDao implements BookDao {
 
     @Override
     public void save(Book book) {
-        bookList.add(book);
+        if(!contains(book.getName(),book.getAuthors())){
+            book.setId(id++);
+            bookList.add(book);
+        }
     }
 
     @Override
@@ -88,62 +91,44 @@ public class InMemoryBookDao implements BookDao {
 
     @Override
     public void updateName(long id, String name) {
-        for(Book book : bookList){
-            if(book.getId() == id){
-                book.setName(name);
-            }
-        }
+        Book book = getBookById(id);
+        book.setName(name);
     }
 
     @Override
     public void updateDescription(long id, String description) {
-        for(Book book : bookList){
-            if(book.getId() == id){
-                book.setDescription(description);
-            }
-        }
+        Book book = getBookById(id);
+        book.setDescription(description);
     }
 
     @Override
     public void updateAuthors(long id, List<Author> authors){
-        for(Book book : bookList){
-            if(book.getId() == id){
-                book.setAuthors(authors);
-            }
-        }
+        Book book = getBookById(id);
+        book.setAuthors(authors);
     }
 
     @Override
     public void updatePrice(long id, int price) {
-        for(Book book : bookList){
-            if(book.getId() == id){
-                book.setPrice(price);
-            }
-        }
+        Book book = getBookById(id);
+        book.setPrice(price);
     }
 
     @Override
     public void updateGenre(long id, String genre) {
-        for(Book book : bookList){
-            if(book.getId() == id){
-                book.setGenre(genre);
-            }
-        }
+        Book book = getBookById(id);
+        book.setGenre(genre);
     }
 
     @Override
     public void updatePublicationDate(long id, LocalDate date) {
-        for(Book book : bookList){
-            if(book.getId() == id){
-                book.setPublicationDate(date);
-            }
-        }
+        Book book = getBookById(id);
+        book.setPublicationDate(date);
     }
 
     @Override
     public boolean contains(String name, List<Author> author){
         for(Book book : bookList){
-            if(book.getName().equals(name) && book.getAuthors() == author){
+            if(book.getName().equals(name) && book.getAuthors().equals(author)){
                 return true;
             }
         }

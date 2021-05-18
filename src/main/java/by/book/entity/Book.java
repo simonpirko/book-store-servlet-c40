@@ -19,4 +19,13 @@ public class Book {
     private List<Comment> comments;
     private List<Author> authors;
     private LocalDate publicationDate;
+
+    public Book(String name, int price, String description, String genre, List<Author> authors, LocalDate publicationDate) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.authors = authors;
+        this.publicationDate = publicationDate;
+    }
 }
