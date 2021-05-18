@@ -6,7 +6,7 @@ import by.book.entity.Role;
 import by.book.entity.User;
 import by.book.exception.DaoException;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +46,10 @@ public class InMemoryUserDao implements UserDao {
     }
 
     @Override
-    public void updateBirthday(long id, LocalDateTime localDateTime) {
+    public void updateBirthday(long id, LocalDate localDate) {
         User user = getById(id);
         if (user != null) {
-            user.setBirthDate(localDateTime);
+            user.setBirthDate(localDate);
         }
     }
 
@@ -121,7 +121,7 @@ public class InMemoryUserDao implements UserDao {
         return false;
     }
     static {
-        LocalDateTime randDate = LocalDateTime.of(2017, Month.JULY, 9, 11, 6, 22);
+        LocalDate randDate = LocalDate.of(2017, Month.JULY, 20);
         users.add(new User(1, "Moder", "Стэк", "Оверфлоувович", randDate, new Address(0, "www", 1), "1111", Role.MODERATOR));
         users.add(new User(2, "Admin", "Отец", "Отцов", randDate, new Address(1, "www", 1), "1111", Role.ADMIN));
     }

@@ -10,14 +10,14 @@ import by.book.entity.User;
 import by.book.exception.DaoException;
 import by.book.exception.UserDataException;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserService {
     private UserDao userDao = new InMemoryUserDao();
     private AddressDao addressDao = new InMemoryAddressDao();
 
-    public void add(String userName, String firstName, String lastName, LocalDateTime birthDate, Address address, String password) throws UserDataException {
+    public void add(String userName, String firstName, String lastName, LocalDate birthDate, Address address, String password) throws UserDataException {
         if (userName == null || firstName == null || lastName == null || birthDate == null || address == null || password == null) {
             throw new UserDataException("Fill in all the fields!");
         }
@@ -84,12 +84,12 @@ public class UserService {
     }
 
     public void changPersonalData(User user, String userName, String firstName,
-                                  String lastName, LocalDateTime birthDate) throws UserDataException{
+                                  String lastName, LocalDate birthDate) throws UserDataException{
         if(userName == null || firstName == null || lastName == null || birthDate == null){
-            throw  new UserDataException("Fill in all the fields!");
+            throw  new UserDataException("????????? ??? ????!");
         }
         if(userDao.containsByName(userName)){
-            throw  new UserDataException("This UserName already exists");
+            throw  new UserDataException("??? ??? ???????????? ??? ??????????");
         }
         user.setUsername(userName);
         user.setFirstName(firstName);
