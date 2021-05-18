@@ -11,7 +11,7 @@
             <div class="coll-md-12 mt-2">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="/home">Главная</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Профиль</li>
                     </ol>
                 </nav>
@@ -23,12 +23,10 @@
             </div>
             <div class="col-md-9 mt-2 mb-2">
                 <div class="card p-2">
-                    <span><b>Логин: </b> Boris</span>
-                    <span class="mt-1"><b>Email: </b> boris88@gmail.com</span>
-                    <span class="mt-1"><b>Имя: </b> Борис</span>
-                    <span class="mt-1"><b>Фамилия: </b> Борисовский</span>
-                    <span class="mt-1"><b>День рождения: </b> 20.05.1999</span>
-                    <span class="mt-1"><b>Дата регистрации аккаунта: </b> 01.05.2021 21:45</span>
+                    <span><b>Логин: </b> ${sessionScope.user.username}</span>
+                    <span class="mt-1"><b>Имя: </b> ${sessionScope.user.firstName}</span>
+                    <span class="mt-1"><b>Фамилия: </b> ${sessionScope.user.lastName}</span>
+                    <span class="mt-1"><b>День рождения: </b> ${requestScope.birthdate}</span>
                     <hr>
                     <a class="btn btn-outline-warning" href="/logout">Выйти из аккаунта</a>
                 </div>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(urlPatterns = "/profile/editAddress")
 public class ProfileEditAddressServlet extends HttpServlet {
@@ -31,6 +32,11 @@ public class ProfileEditAddressServlet extends HttpServlet {
         } catch (UserDataException e) {
             req.setAttribute("message", e.getMessage());
         }
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        req.setAttribute("birthdate", formatter.format(user.getBirthDate()));
+
         req.getServletContext().getRequestDispatcher("/pages/user/editProfile.jsp").forward(req, resp);
     }
 }

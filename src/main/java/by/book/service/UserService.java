@@ -88,9 +88,12 @@ public class UserService {
         if(userName == null || firstName == null || lastName == null || birthDate == null){
             throw  new UserDataException("Fill in all the fields!");
         }
-        if(userDao.containsByName(userName)){
-            throw  new UserDataException("This UserName already exists");
+        if(!(user.getUsername().equals(userName))){
+            if(userDao.containsByName(userName) ){
+                throw  new UserDataException("This UserName already exists");
+            }
         }
+
         user.setUsername(userName);
         user.setFirstName(firstName);
         user.setLastName(lastName);
