@@ -20,6 +20,20 @@
             </nav>
         </div>
     </div>
+    <form class="row g-3">
+        <div class="col-auto">
+            <label for="inputRole" class="visually-hidden">Роль</label>
+            <select class="form-select" name="role" id="inputRole" aria-label="Select role">
+                <option>--- Выберите роль ---</option>
+                <c:forEach var="role" items="${requestScope.roleList}">
+                    <option <c:if test="${role == requestScope.user.role}">selected</c:if> value="${role}">${role}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Фильтровать</button>
+        </div>
+    </form>
     <div class="row">
         <div class="col-md-12 mt-2 mb-2">
             <table class="table table-hover">
@@ -46,7 +60,7 @@
                         <td>${store.address.street}, ${store.address.home}</td>
                         <td>${store.role}</td>
                         <td>
-                            <a href="/staff/user/edit?id=${store.id}" class="btn btn-warning btn-sm">Редактировать</a>
+                            <a href="/staff/user/edit?id=${store.id}" class="btn btn-warning btn-sm">Редактировать роль</a>
                         </td>
                     </tr>
                 </c:forEach>
