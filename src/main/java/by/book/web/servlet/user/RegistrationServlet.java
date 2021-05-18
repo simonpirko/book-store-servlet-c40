@@ -31,14 +31,14 @@ public class RegistrationServlet extends HttpServlet {
         String firstName = req.getParameter("firstName").trim();
         String lastName = req.getParameter("lastName").trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime birthDate = LocalDate.parse(req.getParameter("birthDate"), formatter).atStartOfDay();
+        LocalDate birthDate = LocalDate.from(LocalDate.parse(req.getParameter("birthDate"), formatter).atStartOfDay());
         String userStreet = req.getParameter("userStreet").trim();
         int userHome = Integer.parseInt(req.getParameter("userHome"));
         String password = req.getParameter("password");
         Address userAddress = new Address(2, userStreet, userHome);
         try {
             userService.add(userName, firstName, lastName, birthDate, userAddress, password);
-            req.setAttribute("message", "Successfully registrated!");
+            req.setAttribute("message", "Успешно зарегистрирован!");
         } catch (UserDataException e) {
             req.setAttribute("message", e.getMessage());
         }
