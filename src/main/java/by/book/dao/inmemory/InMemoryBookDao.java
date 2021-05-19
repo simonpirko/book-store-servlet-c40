@@ -6,7 +6,9 @@ import by.book.entity.Book;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InMemoryBookDao implements BookDao {
     private static List<Book> bookList = new ArrayList<>();
@@ -133,5 +135,14 @@ public class InMemoryBookDao implements BookDao {
             }
         }
         return false;
+    }
+
+    @Override
+    public Set<String> getGenre() {
+        Set<String> genreSet = new HashSet<>();
+        for(Book item : bookList) {
+            genreSet.add(item.getGenre());
+        }
+        return genreSet;
     }
 }

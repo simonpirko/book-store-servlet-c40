@@ -17,23 +17,27 @@
     </div>
 </nav>
 
-<div class="card-group">
-    <% for (int i = 0; i < 10; i += 1) { %>
-    <tr>
-        <div class="mt-3"/>
-        <div class="card w-75">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHCUXsYk4wNibk64Lgyf6FGZCz0YRLw5c4LhrWn53M1rqyawCz6Y92t3rAO5Iqc45ZQi4&usqp=CAU"
-                 alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Мастер и Маргарита</h5>
-                <h5 class="card-title">Булгаков</h5>
-                <p class="card-text">Описание</p>
-                <a href="#" class="btn btn-primary">Подробнее</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-group">
+                <% for (int i = 0; i < 10; i += 1) { %>
+                    <div class="mt-2 mb-2">
+                        <div class="card w-750" style="width: 95%">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHCUXsYk4wNibk64Lgyf6FGZCz0YRLw5c4LhrWn53M1rqyawCz6Y92t3rAO5Iqc45ZQi4&usqp=CAU"
+                                 alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Мастер и Маргарита</h5>
+                                <h5 class="card-title">Булгаков</h5>
+                                <p class="card-text">Описание</p>
+                                <a href="#" class="btn btn-primary">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
             </div>
         </div>
-</div>
-</tr>
-<% } %>
+    </div>
 </div>
 
 <jsp:include page="_footer.jsp"/>

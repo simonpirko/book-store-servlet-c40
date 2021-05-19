@@ -9,13 +9,34 @@ import by.book.exception.InvalidRequestException;
 import by.book.exception.NotFoundException;
 import by.book.exception.ServerErrorException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StaffUserService {
     private UserDao userDao = new InMemoryUserDao();
 
-    public List<User> getAll() {
-        return userDao.getAll();
+    public List<User> getAll(String role) {
+
+        List<User> resUserList;
+
+        // проверяем что роль передана
+        Role getRole = null;
+        if(role != null && !role.trim().equals("")) {
+            getRole = Role.valueOf(role);
+        }
+        if(getRole != null) {
+            resUserList = new ArrayList<>();
+            for(User user : userDao.getAll()) {
+                if(user.getRole() == getRole) {
+                    resUserList.add(user);
+                }
+            }
+        } else {
+            // если не передана отдаем весь список
+            resUserList = userDao.getAll();
+        }
+
+        return resUserList;
     }
 
     public User getOne(String id) throws NotFoundException, InvalidRequestException {
