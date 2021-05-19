@@ -27,11 +27,16 @@ public class BookService {
 
         // Если нет, идем по циклу и все проверяем
         for(Book item : bookDao.getAll()) {
+            boolean isOk = false;
 
             // Проверка по жанру
-            if(genre != null && genre.equals(item.getGenre())) {
-                resBookList.add(item);
-                continue;
+            if(genre != null) {
+                if(genre.equals(item.getGenre())) {
+                    isOk = true;
+                } else {
+                    // если по жанру не подошла, значит нет смысла проверять по автору и дате издания и можно идти на следущую итерацию
+                    continue;
+                }
             }
 
             // Проверка по автору
@@ -42,28 +47,39 @@ public class BookService {
                 for (Author authorItem : item.getAuthors()) {
                     String name = String.format("%s %s", authorItem.getFirstName(), authorItem.getLastName());
                     if (author.equals(name)) {
-                        // если авторы совпадают добвляем в лист и выходим из цикла
-                        resBookList.add(item);
+                        // если автор совпадает значит можно добавлять в лист
                         isAdd = true;
                         break;
                     }
                 }
-                // если книга добавлена в список, нет смылса проверять дальше, поэтому идем на следщую итерацию
-                if(isAdd) continue;
+
+                if(isAdd) {
+                    // если хоть один автор совпал, значит по автору книга подошла и можно добавлять в список
+                    isOk = true;
+                } else {
+                    // если по автору не подошла, значит нет смысла проверять по дате издания и можно идти на следущую итерацию
+                    continue;
+                }
             }
 
             // Проверка по дате издания
-            if(yearMin != 0 && yearMax == 0 && item.getPublicationDate().getYear() >= yearMin) {
-                resBookList.add(item);
-                continue;
+            if(yearMin != 0) {
+                if(item.getPublicationDate().getYear() >= yearMin) {
+                    isOk = true;
+                } else {
+                    continue;
+                }
+
             }
-            if(yearMax != 0 && yearMin == 0 && item.getPublicationDate().getYear() <= yearMax) {
-                resBookList.add(item);
-                continue;
+            if(yearMax != 0) {
+               if (item.getPublicationDate().getYear() <= yearMax) {
+                   isOk = true;
+               } else {
+                   continue;
+               }
             }
-            if(yearMax != 0 && yearMin != 0 && item.getPublicationDate().getYear() <= yearMax && item.getPublicationDate().getYear() >= yearMin) {
-                resBookList.add(item);
-            }
+
+            if (isOk) resBookList.add(item);
         }
 
         return resBookList;

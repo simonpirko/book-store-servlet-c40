@@ -7,7 +7,6 @@
 </head>
 <body>
 
-
 <div class="container">
     <div class="row">
         <form class="row g-3 needs-validation" novalidate>
@@ -51,7 +50,11 @@
                              alt="Book">
                         <div class="card-body">
                             <h5 class="card-title">${book.name}</h5>
-                            <h5 class="card-text">${book.authors}</h5>
+                            <h5 class="card-text">
+                                <c:forEach var="item" items="${book.authors}">
+                                    ${item},
+                                </c:forEach>
+                            </h5>
                             <p class="card-text">${book.description}</p>
                             <p class="card-text">${book.price} руб.</p>
                             <a href="/book?id=${book.id}" class="btn btn-primary">Подробнее</a>
@@ -62,20 +65,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-<%--<nav class="navbar navbar-expand-lg navbar-light bg-light bg-primary">--%>
-<%--    <div class="container-fluid">--%>
-<%--        <a class="navbar-brand" href="/home">Список всех книг</a>--%>
-<%--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"--%>
-<%--                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--            <span class="navbar-toggler-icon"></span>--%>
-<%--        </button>--%>
-
-<%--    </div>--%>
-<%--</nav>--%>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
         integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
