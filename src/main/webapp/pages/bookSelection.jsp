@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: іван
-  Date: 05.05.2021
-  Time: 16:35
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -15,70 +8,75 @@
 <body>
 
 
-<form class="row g-3 needs-validation" novalidate>
-    <div class="col-md-3">
-        <label for="validationCustom00" class="form-label">Жанр</label>
-        <select class="form-select" id="validationCustom00" required>
-            <option selected disabled value="">Выберите жанр</option>
-            <option>Драмма</option>
-            <option>Драмма</option>
-            <option>Драмма</option>
-        </select>
-        <div class="invalid-feedback">
-            Жанр.
-        </div>
-    </div>
-    <div class="col-md-3">
-        <label for="validationCustom01" class="form-label">Автор</label>
-        <input type="text" class="form-control" id="validationCustom01" required placeholder="Введите автора">
-        <div class="invalid-feedback">
-            Автор книги.
-        </div>
-    </div>
-    <div class="col-md-3">
-        <label for="validationCustom02" class="form-label">Год</label>
-        <input type="text" class="form-control" id="validationCustom02" required placeholder="1995-2021">
-        <div class="invalid-feedback">
-            Год издания.
-        </div>
-    </div>
-
-    <div class="col-12">
-        <button class="btn btn-primary" type="submit">Применить фильтр</button>
-    </div>
-</form>
-
-
-
-<div class="card-group">
-    <% for (int i = 0; i < 10; i += 1) { %>
-    <tr>
-        <div class="mt-3"/>
-        <div class="card w-75">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHCUXsYk4wNibk64Lgyf6FGZCz0YRLw5c4LhrWn53M1rqyawCz6Y92t3rAO5Iqc45ZQi4&usqp=CAU"
-                 alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Мастер и Маргарита</h5>
-                <h5 class="card-title">Булгаков</h5>
-                <p class="card-text">Описание</p>
-                <a href="#" class="btn btn-primary">Подробнее</a>
+<div class="container">
+    <div class="row">
+        <form class="row g-3 needs-validation" novalidate>
+            <div class="col-md-3">
+                <label for="inputGenre" class="form-label">Жанр</label>
+                <select class="form-select" id="inputGenre" name="genre">
+                    <option selected disabled>Выберите жанр</option>
+                    <c:forEach items="${requestScope.filter.get(0)}" var="item">
+                        <option value="${item}">${item}</option>
+                    </c:forEach>
+                </select>
             </div>
+            <div class="col-md-3">
+                <label for="inputAuthor" class="form-label">Автор</label>
+                <select class="form-select" id="inputAuthor" name="author">
+                    <option selected disabled>Выберите автора</option>
+                    <c:forEach items="${requestScope.filter.get(1)}" var="item">
+                        <option value="${item}">${item}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom02" class="form-label">Год издания - от</label>
+                <input type="number" class="form-control" id="validationCustom02" placeholder="1700" name="yearMin">
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom023" class="form-label">Год издания - до</label>
+                <input type="number" class="form-control" id="validationCustom023" placeholder="2021" name="yearMax">
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Применить фильтр</button>
+            </div>
+        </form>
+
+        <div class="card-group">
+            <c:forEach var="book" items="${requestScope.bookList}">
+                <div class="mt-2 mb-2">
+                    <div class="card w-750" style="width: 95%">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHCUXsYk4wNibk64Lgyf6FGZCz0YRLw5c4LhrWn53M1rqyawCz6Y92t3rAO5Iqc45ZQi4&usqp=CAU"
+                             alt="Book">
+                        <div class="card-body">
+                            <h5 class="card-title">${book.name}</h5>
+                            <h5 class="card-text">${book.authors}</h5>
+                            <p class="card-text">${book.description}</p>
+                            <p class="card-text">${book.price} руб.</p>
+                            <a href="/book?id=${book.id}" class="btn btn-primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
-</div>
-</tr>
-<% } %>
-</div>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/home">Список всех книг</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
     </div>
-</nav>
+</div>
+
+
+
+
+<%--<nav class="navbar navbar-expand-lg navbar-light bg-light bg-primary">--%>
+<%--    <div class="container-fluid">--%>
+<%--        <a class="navbar-brand" href="/home">Список всех книг</a>--%>
+<%--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"--%>
+<%--                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">--%>
+<%--            <span class="navbar-toggler-icon"></span>--%>
+<%--        </button>--%>
+
+<%--    </div>--%>
+<%--</nav>--%>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
         integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
         crossorigin="anonymous"></script>

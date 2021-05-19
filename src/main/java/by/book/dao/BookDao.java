@@ -6,6 +6,7 @@ import by.book.entity.Book;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public interface BookDao {
     List<Book> getAll();
@@ -24,8 +25,5 @@ public interface BookDao {
     void updateGenre (long id, String genre);
     void updatePublicationDate(long id, LocalDate date);
     boolean contains(String name, List<Author> author);
-
-
-
-
+    Set<String> getGenre();
 }
