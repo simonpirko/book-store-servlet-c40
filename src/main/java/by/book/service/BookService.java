@@ -6,6 +6,7 @@ import by.book.dao.inmemory.InMemoryAuthorDao;
 import by.book.dao.inmemory.InMemoryBookDao;
 import by.book.entity.Author;
 import by.book.entity.Book;
+import by.book.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -82,5 +83,11 @@ public class BookService {
         filter.add(authorSet);
 
         return filter;
+    }
+
+    public Book getBook(int id) throws NotFoundException {
+        Book bookById = bookDao.getBookById(id);
+        if(bookById == null) throw new NotFoundException();
+        return bookById;
     }
 }
