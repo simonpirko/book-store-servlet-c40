@@ -17,26 +17,23 @@ public class StaffUserService {
 
     public List<User> getAll(String role) {
 
-        List<User> resUserList;
-
         // проверяем что роль передана
         Role getRole = null;
         if(role != null && !role.trim().equals("")) {
             getRole = Role.valueOf(role);
         }
         if(getRole != null) {
-            resUserList = new ArrayList<>();
+            List<User> resUserList = new ArrayList<>();
             for(User user : userDao.getAll()) {
                 if(user.getRole() == getRole) {
                     resUserList.add(user);
                 }
             }
+            return resUserList;
         } else {
             // если не передана отдаем весь список
-            resUserList = userDao.getAll();
+            return userDao.getAll();
         }
-
-        return resUserList;
     }
 
     public User getOne(String id) throws NotFoundException, InvalidRequestException {
