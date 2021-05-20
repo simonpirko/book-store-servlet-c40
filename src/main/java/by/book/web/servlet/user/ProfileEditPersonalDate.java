@@ -36,7 +36,6 @@ public class ProfileEditPersonalDate extends HttpServlet {
         } catch (UserDataException e) {
             req.setAttribute("message", e.getMessage());
         }
-
         req.setAttribute("birthdate", formatter.format(user.getBirthDate()));
         req.getServletContext().getRequestDispatcher("/pages/user/editProfile.jsp").forward(req, resp);
 
