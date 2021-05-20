@@ -89,7 +89,7 @@ public class UserService {
             throw  new UserDataException("Fill in all the fields!");
         }
         if(userDao.containsByName(userName)){
-            throw  new UserDataException("The new address is the same as the old one");
+            throw  new UserDataException("This UserName already exists");
         }
         user.setUsername(userName);
         user.setFirstName(firstName);
