@@ -55,7 +55,6 @@
                                     ${item},
                                 </c:forEach>
                             </h5>
-                            <p class="card-text">${book.description}</p>
                             <p class="card-text">${book.price} руб.</p>
                             <a href="/book?id=${book.id}" class="btn btn-primary">Подробнее</a>
                         </div>
