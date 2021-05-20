@@ -21,7 +21,7 @@ public class StaffUserService {
 
         // проверяем что роль передана
         Role getRole = null;
-        if(role != null && !role.trim().equals("")) {
+        if(role != null && !role.trim().equals("Выберите роль")) {
             getRole = Role.valueOf(role);
         }
         if(getRole != null) {
@@ -55,6 +55,7 @@ public class StaffUserService {
         int idInt =  validaAndTransformStringToInt(id);
         validationParam(role);
         Role newRole = Role.valueOf(role);
+
         if (newRole == null) throw new InvalidRequestException("Invalid role");
 
         User findUser;

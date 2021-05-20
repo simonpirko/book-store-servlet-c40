@@ -13,7 +13,7 @@
         <div class="coll-md-12 mt-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Главная</a></li>
                     <li class="breadcrumb-item" aria-current="page">Staff меню</li>
                     <li class="breadcrumb-item active" aria-current="page">Список пользователей</li>
                 </ol>
@@ -24,7 +24,7 @@
         <div class="col-auto">
             <label for="inputRole" class="visually-hidden">Роль</label>
             <select class="form-select" name="role" id="inputRole" aria-label="Select role">
-                <option>--- Выберите роль ---</option>
+                <option>    Выберите роль    </option>
                 <c:forEach var="role" items="${requestScope.roleList}">
                     <option <c:if test="${role == requestScope.user.role}">selected</c:if> value="${role}">${role}</option>
                 </c:forEach>
@@ -46,7 +46,11 @@
                     <th scope="col">Дата рождения</th>
                     <th scope="col">Адрес</th>
                     <th scope="col">Роль</th>
+                    <c:set var="admin" value="ADMIN"/>
+                    <c:if test="${sessionScope.user.role == admin}">
                     <th scope="col">Действия</th>
+                    </c:if>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -59,9 +63,13 @@
                         <th>${store.birthDate}</th>
                         <td>${store.address.street}, ${store.address.home}</td>
                         <td>${store.role}</td>
-                        <td>
-                            <a href="/staff/user/edit?id=${store.id}" class="btn btn-warning btn-sm">Редактировать роль</a>
-                        </td>
+
+
+                        <c:if test="${sessionScope.user.role== admin}">
+                            <td>
+                                <a href="/staff/user/edit?id=${store.id}" class="btn btn-warning btn-sm">Редактировать роль</a>
+                            </td>
+                        </c:if>
                     </tr>
                 </c:forEach>
                 </tbody>
