@@ -86,11 +86,12 @@ public class UserService {
     public void changPersonalData(User user, String userName, String firstName,
                                   String lastName, LocalDate birthDate) throws UserDataException{
         if(userName == null || firstName == null || lastName == null || birthDate == null){
-            throw  new UserDataException("????????? ??? ????!");
+            throw  new UserDataException("Fill in all the fields!");
         }
         if(userDao.containsByName(userName)){
-            throw  new UserDataException("??? ??? ???????????? ??? ??????????");
+            throw  new UserDataException("The new address is the same as the old one");
         }
+
         user.setUsername(userName);
         user.setFirstName(firstName);
         user.setLastName(lastName);
