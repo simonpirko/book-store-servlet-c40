@@ -91,7 +91,6 @@ public class UserService {
         if(userDao.containsByName(userName)){
             throw  new UserDataException("The new address is the same as the old one");
         }
-
         user.setUsername(userName);
         user.setFirstName(firstName);
         user.setLastName(lastName);
