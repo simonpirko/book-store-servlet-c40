@@ -6,6 +6,7 @@ import by.book.entity.Book;
 import java.util.HashSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -137,16 +138,14 @@ public class InMemoryBookDao implements BookDao {
     }
 
     @Override
-    public boolean containsId(long id) {
+   public boolean containsId(long id) {
         for(Book book : bookList){
             if(book.getId() == id)
                 return true;
         }
         return false;
     }
-    
-    
-    @Override
+  
     public Set<String> getGenre() {
         Set<String> genreSet = new HashSet<>();
         for(Book item : bookList) {
