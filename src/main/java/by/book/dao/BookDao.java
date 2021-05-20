@@ -25,8 +25,4 @@ public interface BookDao {
     void updatePublicationDate(long id, LocalDate date);
     boolean contains(String name, List<Author> author);
     boolean containsId(long id);
-
-
-
-
 }
