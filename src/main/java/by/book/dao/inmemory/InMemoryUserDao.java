@@ -121,7 +121,7 @@ public class InMemoryUserDao implements UserDao {
         return false;
     }
     static {
-        LocalDate randDate = LocalDate.of(2017, Month.JULY, 20);
+        LocalDate randDate = LocalDate.of(2017, Month.JULY,9);
         users.add(new User(1, "Moder", "Стэк", "Оверфлоувович", randDate, new Address(0, "www", 1), "1111", Role.MODERATOR));
         users.add(new User(2, "Admin", "Отец", "Отцов", randDate, new Address(1, "www", 1), "1111", Role.ADMIN));
     }
