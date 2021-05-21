@@ -10,22 +10,22 @@ import by.book.entity.User;
 import by.book.exception.DaoException;
 import by.book.exception.UserDataException;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserService {
     private UserDao userDao = new InMemoryUserDao();
     private AddressDao addressDao = new InMemoryAddressDao();
 
-    public void add(String userName, String firstName, String lastName, LocalDateTime birthDate, Address address, String password) throws UserDataException {
+    public void add(String userName, String firstName, String lastName, LocalDate birthDate, Address address, String password) throws UserDataException {
         if (userName == null || firstName == null || lastName == null || birthDate == null || address == null || password == null) {
-            throw new UserDataException("Fill in all the fields!");
+            throw new UserDataException("Заполните все поля!");
         }
         if (password.length() <= 3) {
-            throw new UserDataException("Password length less then 3");
+            throw new UserDataException("Длина пароля менее 3");
         }
         if (userDao.containsByName(userName)) {
-            throw new UserDataException("User already exist!");
+            throw new UserDataException("Пользователь уже существует!");
         }
         userDao.save(new User(0, userName, firstName, lastName, birthDate, address, password, Role.USER));
     }
@@ -54,19 +54,19 @@ public class UserService {
 
     public void changPassword(User user, String oldPassword, String newPassword, String confNewPassword)  throws UserDataException {
         if(!(user.getPassword().equals(oldPassword))){
-            throw new UserDataException("Invalid old password");
+            throw new UserDataException("Неверный старый пароль");
         }
         if (oldPassword == null || newPassword == null || confNewPassword == null ) {
-            throw new UserDataException("Fill in all the fields!");
+            throw new UserDataException("Заполните все поля!");
         }
         if (newPassword.length() <= 3) {
-            throw new UserDataException("Password length password then 3");
+            throw new UserDataException("Длина пароля пароль затем 3");
         }
         if(oldPassword.equals(newPassword)){
-            throw  new UserDataException("The new password is the same as the old one");
+            throw  new UserDataException("Новый пароль такой же, как и старый");
         }
         if(!(newPassword.equals(confNewPassword))){
-            throw  new UserDataException("new password confirmation entered incorrectly");
+            throw  new UserDataException("Неверно введено подтверждение нового пароля");
         }
         user.setPassword(newPassword);
     }
@@ -74,26 +74,23 @@ public class UserService {
     public void changAddress(Address address, String street, int home) throws UserDataException {
 
         if (street == null || home <= 1) {
-            throw new UserDataException("Fill in all the fields!");
+            throw new UserDataException("Заполните все поля!");
         }
         if (street.equals(address.getStreet())  || home == address.getHome()) {
-            throw new UserDataException("The new address is the same as the old one");
+            throw new UserDataException("Новый адрес совпадает со старым");
         }
             address.setStreet(street);
             address.setHome(home);
     }
 
     public void changPersonalData(User user, String userName, String firstName,
-                                  String lastName, LocalDateTime birthDate) throws UserDataException{
+                                  String lastName, LocalDate birthDate) throws UserDataException{
         if(userName == null || firstName == null || lastName == null || birthDate == null){
-            throw  new UserDataException("Fill in all the fields!");
+            throw  new UserDataException("Заполните все поля!");
         }
-        if(!(user.getUsername().equals(userName))){
-            if(userDao.containsByName(userName) ){
-                throw  new UserDataException("This UserName already exists");
-            }
+        if(userDao.containsByName(userName)){
+            throw  new UserDataException("Это имя пользователя уже существует");
         }
-
         user.setUsername(userName);
         user.setFirstName(firstName);
         user.setLastName(lastName);
