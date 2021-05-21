@@ -1,28 +1,28 @@
-drop table comment;
+drop table if exists  comment;
 
-drop table order_book;
+drop table if exists order_book;
 
-drop table "order";
+drop table if exists "order";
 
-drop table "user";
+drop table if exists "user";
 
-drop table role;
+drop table if exists role;
 
-drop table store;
+drop table if exists store;
 
-drop table address;
+drop table if exists address;
 
-drop table delivery_type;
+drop table if exists delivery_type;
 
-drop table order_status;
+drop table if exists order_status;
 
-drop table book_author;
+drop table if exists book_author;
 
-drop table book;
+drop table if exists book;
 
-drop table genre;
+drop table if exists genre;
 
-drop table author;
+drop table if exists author;
 
 create table address
 (
