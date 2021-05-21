@@ -65,11 +65,17 @@
                         <td>${store.role}</td>
 
 
-                        <c:if test="${sessionScope.user.role== admin}">
+                        <c:if test="${sessionScope.user.role== admin && sessionScope.user.id != store.id}">
                             <td>
                                 <a href="/staff/user/edit?id=${store.id}" class="btn btn-warning btn-sm">Редактировать роль</a>
                             </td>
                         </c:if>
+                        <c:if test="${sessionScope.user.id == store.id}">
+                            <td>
+                                <div href="" class="btn btn-warning btn-sm">Изменение роли недоступно</div>
+                            </td>
+                        </c:if>
+
                     </tr>
                 </c:forEach>
                 </tbody>

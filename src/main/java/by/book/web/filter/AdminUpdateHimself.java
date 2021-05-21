@@ -7,23 +7,26 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//blocks access to the staff menu for all user roles,  except administrator
-@WebFilter(servletNames = {"StoreEditServlet", "StoreCreateServlet", "StoreDeleteServlet", "StoreListServlet", "UserEditServlet"})
-public class CheckAdminEditFilter implements Filter {
+//protects against access to the role change by the administrator to himself
+@WebFilter(servletNames = "UserEditServlet")
+public class AdminUpdateHimself implements Filter {
+
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        User user = (User) req.getSession().getAttribute("user");
+        User user =(User)req.getSession().getAttribute("user");
+        long id = Long.parseLong(req.getParameter("id"));
 
-        if(user != null && user.getRole() == Role.ADMIN) {
-            chain.doFilter(request, response);
-        } else {
+        //the id of the administrator and the id of user that is being changed are compared
+        if( id == user.getId()) {
             res.sendRedirect("/404");
+        } else {
+            chain.doFilter(request, response);
         }
     }
 }
