@@ -12,6 +12,7 @@ public interface AuthorDao {
     void updateFirstName(long id, String name);
     void updateLastName(long id, String name);
     void updateDescription(long id, String name);
-    boolean contains(Author author);
+    boolean contains(String fName, String lName);
+    boolean containsId(long id);
 
 }

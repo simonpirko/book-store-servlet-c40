@@ -1,9 +1,11 @@
 package by.book.web.servlet.staffAuthor;
 
 import by.book.exception.DaoException;
+import by.book.exception.DuplicateDataException;
 import by.book.exception.InvalidRequestException;
 import by.book.service.StaffAuthorService;
 import by.book.service.StaffBookService;
+import by.book.service.ValidationService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,10 +25,13 @@ public class AuthorAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            staffAuthorService.save(req.getParameter("fName"),req.getParameter("lName"),req.getParameter("description"));
+            staffAuthorService.save(
+                    ValidationService.validationTrimString(req.getParameter("fName")),
+                    ValidationService.validationTrimString(req.getParameter("lName")),
+                    ValidationService.validationTrimString(req.getParameter("description")));
         } catch (InvalidRequestException e) {
             req.setAttribute("message", "Некорректные данные");
-        } catch (DaoException e) {
+        } catch (DuplicateDataException e) {
             req.setAttribute("message", "Такой автор уже есть");
         }
 

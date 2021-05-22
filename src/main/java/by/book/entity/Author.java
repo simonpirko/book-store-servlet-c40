@@ -13,8 +13,4 @@ public class Author {
     private String lastName;
     private String description;
 
-    @Override
-    public String toString() {
-        return  firstName + " " + lastName;
-    }
 }
