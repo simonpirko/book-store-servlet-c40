@@ -1,24 +1,39 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <title>Доставка и оплата</title>
 </head>
 <body>
 <jsp:include page="_header.jsp" />
-
 <div class="container">
-  <div class="row">
-    <div class="coll-md-12 mt-2">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Главная</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Доставка и оплата</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
+      <div class="row">
+          <div class="coll-md-12 mt-2">
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Доставка и оплата</li>
+                  </ol>
+              </nav>
+          </div>
+      </div>
+      <div class="row">
+
+          <div class="card mt-3 mb-3">
+              <div class="card-header">
+                  Самовывоз
+              </div>
+              <div class="card-body">
+                  <ul class="list-group">
+                  <h5 class="card-title">
+                      <c:forEach var="store" items="${requestScope.storeList}">
+                          <li class="list-group-item">${store.name}, (${store.address.street}, д. ${store.address.home})</li>
+                      </c:forEach>
+                  </h5>
+                  </ul>
+              </div>
+          </div>
+
 
       <div class="card mt-3 mb-3">
         <div class="card-header">

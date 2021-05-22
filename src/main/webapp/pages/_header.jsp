@@ -27,10 +27,7 @@
                         <a class="nav-link active" aria-current="page" href="/selection">Книги</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">О нас</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Контакты</a>
+                    <a class="nav-link" href="/delivery">Доставка и оплата</a>
                 </li>
 
                 <jsp:include page="_staffMenu.jsp" />

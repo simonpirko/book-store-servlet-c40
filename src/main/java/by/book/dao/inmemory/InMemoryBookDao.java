@@ -15,7 +15,7 @@ public class InMemoryBookDao implements BookDao {
     private static long id = 1;
     @Override
     public List<Book> getAll() {
-        return bookList;
+        return new ArrayList<>(bookList);
     }
 
     @Override
