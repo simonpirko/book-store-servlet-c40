@@ -25,7 +25,6 @@
 
     </div>
     </div>
-    ${requestScope.authMessage}
     <div class="col-md-3">
         <div class="col-md-6 offset-md-9">
             <button type="submit" style="margin: 5px" class="btn btn-primary">Войти</button>
