@@ -28,7 +28,7 @@ public class ProfileEditPasswordServlet extends HttpServlet {
 
         try {
             userService.changPassword(user,oldPassword,newPassword, confirmNewPassword);
-            req.setAttribute("message", "Адрес успешно изменен!");
+            req.setAttribute("message", "Пароль успешно изменен!");
         } catch (UserDataException e) {
             req.setAttribute("message", e.getMessage() );
 
