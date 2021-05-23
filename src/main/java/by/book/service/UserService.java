@@ -88,9 +88,18 @@ public class UserService {
         if(userName == null || firstName == null || lastName == null || birthDate == null){
             throw  new UserDataException("Заполните все поля!");
         }
-        if(userDao.containsByName(userName)){
+
+        if(userName.equals(user.getUsername()) &&
+                firstName.equals(user.getFirstName()) &&
+                lastName.equals(user.getLastName()) &&
+                birthDate.equals(user.getBirthDate())){
+            throw  new UserDataException("Вы не сделали никаких изменений");
+        }
+
+        if(userDao.containsByName(userName) && !userName.equals(user.getUsername())){
             throw  new UserDataException("Это имя пользователя уже существует");
         }
+
         user.setUsername(userName);
         user.setFirstName(firstName);
         user.setLastName(lastName);

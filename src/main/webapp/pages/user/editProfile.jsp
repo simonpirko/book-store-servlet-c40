@@ -100,14 +100,11 @@
                         </div>
                     </form>
                 </div>
-                    <h4>
-                        ${requestScope.message}
-                    </h4>
             </div>
         </div>
     </div>
 </div>
-
+<jsp:include page="../_alert.jsp"/>
 <jsp:include page="../_footer.jsp" />
 </body>
 </html>

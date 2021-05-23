@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet(urlPatterns = "/profile/editPersonalData")
+@WebServlet(urlPatterns = "/profile/editPersonalData", name ="ProfileEditPersonalDate")
 public class ProfileEditPersonalDate extends HttpServlet {
     UserService userService = new UserService();
 

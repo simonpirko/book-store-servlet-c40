@@ -32,6 +32,7 @@
         </div>
     </div>
 </form>
+<jsp:include page="../_alert.jsp"/>
 <jsp:include page="../_footer.jsp"/>
 </body>
 </html>

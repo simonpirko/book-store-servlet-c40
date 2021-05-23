@@ -32,7 +32,7 @@ public class AuthorizationServlet extends HttpServlet {
             req.getSession().setAttribute("user", userService.getByUserName(login));
             resp.sendRedirect("/home");
         } else {
-            req.setAttribute("authMessage", "Incorrect login or password");
+            req.setAttribute("message", "Неверный логин или пароль");
             getServletContext().getRequestDispatcher("/pages/user/authorization.jsp").forward(req, resp);
         }
     }
