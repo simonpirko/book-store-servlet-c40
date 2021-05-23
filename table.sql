@@ -1,3 +1,29 @@
+drop table if exists  comment;
+
+drop table if exists order_book;
+
+drop table if exists "order";
+
+drop table if exists "user";
+
+drop table if exists role;
+
+drop table if exists store;
+
+drop table if exists address;
+
+drop table if exists delivery_type;
+
+drop table if exists order_status;
+
+drop table if exists book_author;
+
+drop table if exists book;
+
+drop table if exists genre;
+
+drop table if exists author;
+
 create table address
 (
     id serial not null
@@ -5,6 +31,15 @@ create table address
             primary key,
     street varchar(300) not null,
     home integer not null,
+    created_at timestamp with time zone default now() not null
+);
+
+create table "role"
+(
+    id serial not null
+        constraint role_pk
+            primary key,
+    name varchar(300) not null,
     created_at timestamp with time zone default now() not null
 );
 
@@ -18,7 +53,9 @@ create table "user"
             references address,
     username varchar(300) not null,
     password varchar(300) not null,
-    role varchar(300) not null,
+    role integer
+        constraint user_role_id_fk
+            references role not null,
     first_name varchar(300),
     last_name varchar(300),
     date_birth date,
@@ -43,6 +80,24 @@ create table store
 create unique index store_id_uindex
     on store (id);
 
+create table "delivery_type"
+(
+    id serial not null
+        constraint delivery_type_pk
+            primary key,
+    name varchar(300) not null,
+    created_at timestamp with time zone default now() not null
+);
+
+create table "order_status"
+(
+    id serial not null
+        constraint order_status_pk
+            primary key,
+    name varchar(300) not null,
+    created_at timestamp with time zone default now() not null
+);
+
 create table "order"
 (
     id serial not null
@@ -57,8 +112,12 @@ create table "order"
     address_id integer
         constraint order_address_id_fk
             references address,
-    delivery_type varchar(300) not null,
-    order_status varchar(300) not null,
+    delivery_type integer
+        constraint order_delivery_type_id_fk
+            references delivery_type not null,
+    order_status integer
+        constraint order_order_status_id_fk
+            references order_status not null,
     created_at timestamp with time zone default now() not null
 );
 

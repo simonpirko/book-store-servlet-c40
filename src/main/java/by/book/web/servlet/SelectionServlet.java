@@ -19,15 +19,19 @@ public class SelectionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int yearMin = 0;
-        int yearMax = 0;
+        int yearMin;
+        int yearMax;
 
         try {
             yearMin = Integer.parseInt(req.getParameter("yearMin"));
-        } catch(NumberFormatException e) {}
+        } catch(NumberFormatException e) {
+            yearMin = 0;
+        }
         try {
             yearMax = Integer.parseInt(req.getParameter("yearMax"));
-        } catch(NumberFormatException e) {}
+        } catch(NumberFormatException e) {
+            yearMax = 0;
+        }
 
 
         List<Book> bookList = bookService.getBook(req.getParameter("genre"), req.getParameter("author"), yearMin, yearMax);
