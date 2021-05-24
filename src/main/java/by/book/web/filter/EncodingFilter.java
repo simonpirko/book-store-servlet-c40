@@ -4,12 +4,12 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(servletNames = { "StoreEditServlet", "StoreCreateServlet", "StoreDeleteServlet", "StoreListServlet",
-        "UserListServlet", "UserEditServlet", "AuthorAddServlet","BookAddServlet","BookEditServlet", "BookManagerServlet",
+@WebFilter(servletNames = {"StoreEditServlet", "StoreCreateServlet", "StoreDeleteServlet", "StoreListServlet",
+        "UserListServlet", "UserEditServlet", "AuthorAddServlet", "BookAddServlet", "BookEditServlet", "BookManagerServlet",
         "BookRemoveServlet", "CheckAccessFilter", "AuthorizationServlet", "LogOutServlet", "ProfileEditAddressServlet",
         "ProfileEditPasswordServlet", "ProfileEditPersonalDate", "ProfileEditServlet", "ProfileServlet", "RegistrationServlet",
-        "AboutUsServlet", "BasketServlet", "CatalogServlet", "DotsServlet", "HomeServlet", "SearchServlet", "SelectionServlet",
-        "SettingsServlet"})
+        "AboutUsServlet", "BasketServlet", "BookRemoveInBasketServlet", "OrderServlet", "OrderManager", "OrderProfileServlet",
+        "CatalogServlet", "DotsServlet", "HomeServlet", "SearchServlet", "SelectionServlet", "SettingsServlet"})
 public class EncodingFilter implements Filter {
 
 
