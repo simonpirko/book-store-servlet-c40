@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 @Data
 @AllArgsConstructor
@@ -17,4 +18,5 @@ public class Order {
     private Store store;
     private Type type;
     private OrderStatus status;
+    private LocalDate orderDate;
 }

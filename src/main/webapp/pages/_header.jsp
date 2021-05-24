@@ -43,12 +43,7 @@
                     <input class="form-control ms-2" type="search" placeholder="Поиск" aria-label="Search">
                 </form>
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll ms-3" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                            <a class="nav-link  d-flex justify-content-between align-items-center" href="#">
-                                <p class="m-0">Корзина</p>
-                                <i class="fas fa-shopping-cart ms-1" style="font-size: 30px"></i>
-                            </a>
-                    </li>
+
                     <c:if test="${sessionScope.user == null}">
                         <li class="nav-item ms-3 d-flex">
                             <a class="nav-link d-flex justify-content-between align-items-center" href="/reg">
@@ -64,6 +59,12 @@
                         </li>
                     </c:if>
                     <c:if test="${sessionScope.user != null}">
+                        <li class="nav-item">
+                            <a class="nav-link  d-flex justify-content-between align-items-center" href="/basket">
+                                <p class="m-0">Корзина</p>
+                                <i class="fas fa-shopping-cart ms-1" style="font-size: 30px"></i>
+                            </a>
+                        </li>
                         <li class="nav-item ms-3 d-flex">
                             <a class="nav-link d-flex justify-content-between align-items-center" href="/profile">
                                 <p class="m-0">Личный кабинет</p>
