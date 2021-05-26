@@ -4,14 +4,13 @@ import by.book.dao.AddressDao;
 import by.book.entity.Address;
 import by.book.entity.Store;
 import by.book.entity.User;
-import by.book.exception.DaoException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryAddressDao implements AddressDao {
     private static List<Address> listAddress = new ArrayList<>();
-    private static long addressId = 0;
+    private static long addressId = 1;
 
     @Override
     public List<Address> getAll() {
@@ -19,13 +18,13 @@ public class InMemoryAddressDao implements AddressDao {
     }
 
     @Override
-    public Address getById(long id) throws DaoException {
+    public Address getById(long id) {
         for (Address address : listAddress) {
             if (address.getId() == id) {
                 return address;
             }
         }
-        throw new DaoException("Адреса с таким id не существует");
+        throw new RuntimeException("Address with this id is not exist");
     }
 
     @Override
@@ -49,34 +48,40 @@ public class InMemoryAddressDao implements AddressDao {
     }
 
     @Override
-    public void delete(long id) throws DaoException {
+    public void delete(long id) {
         listAddress.remove(getById(id));
     }
 
     @Override
     public void save(Address address) {
-        if (!contains(address.getStreet(), address.getHome())) {
+        if (!contains(address)) {
             address.setId(addressId++);
             listAddress.add(address);
         }
     }
 
     @Override
-    public void updateStreet(long id, String street) throws DaoException {
-        Address address = getById(id);
-        address.setStreet(street);
-    }
-
-    @Override
-    public void updateHome(long id, int home) throws DaoException {
-        Address address = getById(id);
-        address.setHome(home);
-    }
-
-    @Override
-    public boolean contains(String street, int home) {
+    public void updateStreet(long id, String street) {
         for (Address address : listAddress) {
-            if (address.getStreet().equals(street) && address.getHome() == home) {
+            if (address.getId() == id) {
+                address.setStreet(street);
+            }
+        }
+    }
+
+    @Override
+    public void updateHome(long id, int home) {
+        for (Address address : listAddress) {
+            if (address.getId() == id) {
+                address.setHome(home);
+            }
+        }
+    }
+
+    @Override
+    public boolean contains(Address isAddress) {
+        for (Address address : listAddress) {
+            if (address.equals(isAddress)) {
                 return true;
             }
         }

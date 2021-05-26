@@ -2,7 +2,7 @@ package by.book.dao;
 
 import by.book.entity.Author;
 import by.book.entity.Book;
-
+import java.util.Set;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -26,4 +26,6 @@ public interface BookDao {
     void updatePublicationDate(long id, LocalDate date);
     boolean contains(String name, List<Author> author);
     Set<String> getGenre();
+    boolean containsId(long id);
+  
 }

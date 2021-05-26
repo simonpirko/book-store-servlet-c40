@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = { "StoreEditServlet", "StoreCreateServlet", "StoreDeleteServlet", "StoreListServlet", "UserListServlet", "UserEditServlet", "AuthorAdd", "BookEdit", "BookAdd", "BookManager", "BookRemove" })
+@WebFilter(servletNames = {"StoreEditServlet", "StoreCreateServlet", "StoreDeleteServlet", "StoreListServlet", "UserListServlet", "UserEditServlet", "AuthorAdd", "BookEdit", "BookAdd", "BookManager", "BookRemove", "OrderManager"})
 public class CheckAccessFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -20,9 +20,9 @@ public class CheckAccessFilter implements Filter {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
 
-        if(
+        if (
                 user != null && user.getRole() == Role.ADMIN ||
-                user != null && user.getRole() == Role.MODERATOR
+                        user != null && user.getRole() == Role.MODERATOR
         ) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {

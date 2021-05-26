@@ -1,12 +1,10 @@
 package by.book.web.servlet.staffBook;
 
 import by.book.entity.Author;
-import by.book.exception.DaoException;
-import by.book.exception.IncorrectData;
-import by.book.exception.InvalidRequestException;
-import by.book.exception.NotFoundException;
+import by.book.exception.*;
 import by.book.service.StaffAuthorService;
 import by.book.service.StaffBookService;
+import by.book.service.ValidationService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,20 +28,23 @@ public class BookAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            List<Author> authors = staffAuthorService.getListById(req.getParameterValues("authorIdList"));
-            staffBookService.save(req.getParameter("name"),req.getParameter("price"),req.getParameter("description"),req.getParameter("genre"),authors,req.getParameter("publicDate"));
-            req.setAttribute("message", "Книга добавлена");
-        } catch (InvalidRequestException e) {
-            req.setAttribute("message", "Некорректные данные");
-        } catch (DaoException e) {
-            req.setAttribute("message", "Такая книга уже существует");
+            staffBookService.save(
+                    ValidationService.validationTrimString(req.getParameter("name")),
+                    ValidationService.validAndTransformStringToInt(req.getParameter("price")),
+                    ValidationService.validationTrimString(req.getParameter("description")),
+                    ValidationService.validationTrimString(req.getParameter("genre")),
+                    ValidationService.validTransformArrayStringToListLong(req.getParameterValues("authorIdList")),
+                    ValidationService.validAndTransformStringToLocalDate(req.getParameter("publicDate")));
+        } catch (DuplicateDataException e) {
+            req.setAttribute("message", "Такая книга уже есть");
         } catch (NotFoundException e) {
             req.setAttribute("message", "Автор не найден");
-        }catch (NullPointerException e){
-            req.setAttribute("message", "Ошибка добавления автора");
-        } catch (IncorrectData incorrectData) {
-            req.setAttribute("message", "Неверная цена");
+        } catch (InvalidRequestException e) {
+            req.setAttribute("message", "Некорректные данные");
+        } catch (IncorrectData e) {
+            req.setAttribute("message","Данные указаны неверно");
         }
+
         req.setAttribute("listBook",staffBookService.getAll());
         getServletContext().getRequestDispatcher("/pages/staffBook/bookManager.jsp").forward(req,resp);
     }

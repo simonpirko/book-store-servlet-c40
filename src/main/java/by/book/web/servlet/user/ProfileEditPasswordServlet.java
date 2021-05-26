@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(urlPatterns = "/profile/editPassword", name = "ProfileEditPasswordServlet")
 public class ProfileEditPasswordServlet extends HttpServlet {
@@ -32,6 +33,9 @@ public class ProfileEditPasswordServlet extends HttpServlet {
             req.setAttribute("message", e.getMessage() );
 
         }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        req.setAttribute("birthdate", formatter.format(user.getBirthDate()));
 
         req.getServletContext().getRequestDispatcher("/pages/user/editProfile.jsp").forward(req, resp);
 
