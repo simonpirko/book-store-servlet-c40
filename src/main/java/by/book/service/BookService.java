@@ -3,7 +3,7 @@ package by.book.service;
 import by.book.dao.AuthorDao;
 import by.book.dao.BookDao;
 import by.book.dao.inmemory.InMemoryAuthorDao;
-import by.book.dao.inmemory.InMemoryBookDao;
+import by.book.dao.postgres.PgBookDao;
 import by.book.entity.Author;
 import by.book.entity.Book;
 import by.book.exception.NotFoundException;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class BookService {
 
-    private final BookDao bookDao = new InMemoryBookDao();
+    private final BookDao bookDao = new PgBookDao();
     private final AuthorDao authorDao = new InMemoryAuthorDao();
 
     public List<Book> getBook(String genre, String author, int yearMin, int yearMax) {

@@ -23,9 +23,9 @@
                         <cite title="Source Title">${requestScope.book.description}</cite>
                     </figcaption>
                     <hr>
-                    <p><b>Автор: </b>
+                    <p><b>Автор: </b> <br>
                         <c:forEach var="item" items="${requestScope.book.authors}">
-                            ${item},
+                            - ${item.firstName} ${item.lastName}<br>
                         </c:forEach>
                     </p>
                     <p><b>Жанр: </b>${requestScope.book.genre}</p>
@@ -100,6 +100,7 @@
 
                     <c:forEach var="item" items="${requestScope.book.comments}">
                         <div class="media">
+                            <hr/>
                             <a class="pull-left" href="#"></a>
                             <div class="media-body">
                                 <h4 class="media-heading">${item.user.lastName}</h4>

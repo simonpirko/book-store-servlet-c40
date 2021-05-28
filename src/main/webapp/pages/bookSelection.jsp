@@ -49,11 +49,11 @@
                                  alt="Book">
                             <div class="card-body">
                                 <h5 class="card-title">${book.name}</h5>
-                                <h5 class="card-text">
+                                <h6 class="card-text">
                                     <c:forEach var="item" items="${book.authors}">
-                                        ${item},
+                                        - ${item.firstName} ${item.lastName}<br>
                                     </c:forEach>
-                                </h5>
+                                </h6>
                                 <p class="card-text">${book.price} руб.</p>
                                 <a href="/book?id=${book.id}" class="btn btn-primary">Подробнее</a>
                             </div>

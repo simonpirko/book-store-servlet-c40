@@ -8,6 +8,7 @@ import by.book.dao.inmemory.InMemoryBasketDao;
 import by.book.dao.inmemory.InMemoryBookDao;
 import by.book.dao.inmemory.InMemoryOrderDao;
 import by.book.dao.inmemory.InMemoryStoreDao;
+import by.book.dao.postgres.PgBookDao;
 import by.book.entity.*;
 import by.book.exception.DaoException;
 import by.book.exception.IncorrectData;
@@ -21,7 +22,7 @@ import java.util.List;
 public class OrderService {
     private OrderDao orderDao = new InMemoryOrderDao();
     private BasketDao basketDao = new InMemoryBasketDao();
-    private BookDao bookDao = new InMemoryBookDao();
+    private BookDao bookDao = new PgBookDao();
     private StoreDao storeDao = new InMemoryStoreDao();
 
     public List<Book> getListBookInBasket() {
