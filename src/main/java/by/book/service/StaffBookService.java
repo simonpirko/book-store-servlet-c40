@@ -4,6 +4,7 @@ import by.book.dao.AuthorDao;
 import by.book.dao.BookDao;
 import by.book.dao.inmemory.InMemoryAuthorDao;
 import by.book.dao.inmemory.InMemoryBookDao;
+import by.book.dao.postgres.PgBookDao;
 import by.book.entity.Author;
 import by.book.entity.Book;
 import by.book.exception.*;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StaffBookService {
-    private BookDao bookDao = new InMemoryBookDao();
+    private BookDao bookDao = new PgBookDao();
     private AuthorDao authorDao = new InMemoryAuthorDao();
 
     public void save(String name, int price, String description, String genre, List<Long> authorsId,LocalDate publicationData) throws IncorrectData, NotFoundException, DuplicateDataException {
