@@ -89,10 +89,14 @@ public class UserService {
             throw  new UserDataException("Заполните все поля!");
         }
 
-        if(user.getUsername().equals(userName) &&
-                user.getFirstName().equals(firstName) &&
-                user.getLastName().equals(lastName) &&
-                user.getBirthDate().equals(birthDate)){
+        User clone = new User(
+                user.getId(), userName,
+                firstName, lastName,
+                birthDate, user.getAddress(),
+                user.getPassword(), user.getRole()
+        );
+
+        if(user.equals(clone)){
             throw  new UserDataException("Вы не сделали никаких изменений");
         }
 
