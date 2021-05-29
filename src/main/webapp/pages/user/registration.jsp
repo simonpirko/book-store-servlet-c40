@@ -60,8 +60,6 @@
         <input type="password" class="col-md-6 offset-md-9" id="inputPassword2" name="password2">
     </div>
     </div>
-    ${requestScope.message}
-    ${requestScope.list}
     <div class="col-md-3">
         <div class="col-md-6 offset-md-9">
             <button type="submit" style="margin: 5px" class="btn btn-primary">Зарегестрироваться</button>
@@ -70,6 +68,7 @@
 
 
 </form>
+<jsp:include page="../_alert.jsp"/>
 <jsp:include page="../_footer.jsp"/>
 
 
