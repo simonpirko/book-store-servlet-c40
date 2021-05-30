@@ -40,10 +40,6 @@
 <%--                Edit main data tab--%>
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <form class="row g-3" method="post" action="/profile/editPersonalData">
-                        <div class="col-md-12">
-                            <label for="userName" class="form-label">Логин</label>
-                            <input type="text" class="form-control" id="userName" required name="userName" value="${sessionScope.user.username}">
-                        </div>
                         <div class="col-md-6">
                             <label for="inputLastName" class="form-label">Имя</label>
                             <input type="text" class="form-control" id="inputLastName" required name="firstName" value="${sessionScope.user.firstName}">

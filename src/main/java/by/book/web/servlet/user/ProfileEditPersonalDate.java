@@ -23,15 +23,15 @@ public class ProfileEditPersonalDate extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User)req.getSession().getAttribute("user");
 
-
-        String userName = req.getParameter("userName").trim();
         String firstName = req.getParameter("firstName").trim();
         String lastName = req.getParameter("lastName").trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate birthDate = LocalDate.from(LocalDate.parse(req.getParameter("date"), formatter).atStartOfDay());
 
         try {
-            userService.changPersonalData(user, userName, firstName, lastName, birthDate);
+            userService.changPersonalData(user, firstName, lastName, birthDate);
+            user = userService.getByUserName(user.getUsername());
+            req.getSession().setAttribute("user", user);
             req.setAttribute("message", "Ваши данные изменены");
         } catch (UserDataException e) {
             req.setAttribute("message", e.getMessage());

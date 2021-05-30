@@ -4,6 +4,7 @@ import by.book.dao.AddressDao;
 import by.book.dao.UserDao;
 import by.book.dao.inmemory.InMemoryAddressDao;
 import by.book.dao.inmemory.InMemoryUserDao;
+import by.book.dao.postgres.PgUserDao;
 import by.book.entity.Address;
 import by.book.entity.Role;
 import by.book.entity.User;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class UserService {
-    private UserDao userDao = new InMemoryUserDao();
+    private UserDao userDao = new PgUserDao();
     private AddressDao addressDao = new InMemoryAddressDao();
 
     public void add(String userName, String firstName, String lastName, LocalDate birthDate, Address address, String password) throws UserDataException {
@@ -68,11 +69,10 @@ public class UserService {
         if(!(newPassword.equals(confNewPassword))){
             throw  new UserDataException("Неверно введено подтверждение нового пароля");
         }
-        user.setPassword(newPassword);
+        userDao.updatePassword(user.getId(), newPassword);
     }
 
     public void changAddress(Address address, String street, int home) throws UserDataException {
-
         if (street == null || home < 1) {
             throw new UserDataException("Заполните все поля!");
         }
@@ -83,30 +83,40 @@ public class UserService {
             address.setHome(home);
     }
 
-    public void changPersonalData(User user, String userName, String firstName,
+    public void changPersonalData(User user, String firstName,
                                   String lastName, LocalDate birthDate) throws UserDataException{
-        if(userName == null || firstName == null || lastName == null || birthDate == null){
+
+        if(firstName == null || lastName == null || birthDate == null){
             throw  new UserDataException("Заполните все поля!");
         }
 
-        User clone = new User(
-                user.getId(), userName,
+        User cloneUser = userCreate(
+                user.getId(), user.getUsername(),
                 firstName, lastName,
                 birthDate, user.getAddress(),
-                user.getPassword(), user.getRole()
-        );
+                user.getPassword(), user.getRole());
 
-        if(user.equals(clone)){
+        if(user.equals(cloneUser)){
             throw  new UserDataException("Вы не сделали никаких изменений");
         }
 
-        if(userDao.containsByName(userName) && !user.getUsername().equals(userName)){
-            throw  new UserDataException("Это имя пользователя уже существует");
+        if (!user.getFirstName().equals(firstName)){
+            userDao.updateFirstName( user.getId(),firstName);
         }
-        user.setUsername(userName);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setBirthDate(birthDate);
+        if (!user.getLastName().equals(lastName)){
+            userDao.updateLastName( user.getId(),lastName);
+        }
+        if (!user.getBirthDate().equals(birthDate)){
+            userDao.updateBirthday( user.getId(),birthDate);
+        }
+    }
+
+    private User userCreate(long id, String userName,
+                            String firstName, String lastName,
+                            LocalDate birthDate, Address address,
+                            String password, Role role){
+
+        return new User(id, userName, firstName, lastName, birthDate, address, password, role);
     }
 
 
