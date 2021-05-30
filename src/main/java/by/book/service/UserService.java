@@ -73,10 +73,10 @@ public class UserService {
 
     public void changAddress(Address address, String street, int home) throws UserDataException {
 
-        if (street == null || home <= 1) {
+        if (street == null || home < 1) {
             throw new UserDataException("Заполните все поля!");
         }
-        if (street.equals(address.getStreet())  || home == address.getHome()) {
+        if (street.equals(address.getStreet())  && home == address.getHome()) {
             throw new UserDataException("Новый адрес совпадает со старым");
         }
             address.setStreet(street);
@@ -88,7 +88,19 @@ public class UserService {
         if(userName == null || firstName == null || lastName == null || birthDate == null){
             throw  new UserDataException("Заполните все поля!");
         }
-        if(userDao.containsByName(userName)){
+
+        User clone = new User(
+                user.getId(), userName,
+                firstName, lastName,
+                birthDate, user.getAddress(),
+                user.getPassword(), user.getRole()
+        );
+
+        if(user.equals(clone)){
+            throw  new UserDataException("Вы не сделали никаких изменений");
+        }
+
+        if(userDao.containsByName(userName) && !user.getUsername().equals(userName)){
             throw  new UserDataException("Это имя пользователя уже существует");
         }
         user.setUsername(userName);

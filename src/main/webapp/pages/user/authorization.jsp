@@ -24,14 +24,13 @@
         <input type="password" class="col-md-6 offset-md-9" id="inputPassword2" name="password">
 
     </div>
-    </div>
-    ${requestScope.authMessage}
     <div class="col-md-3">
         <div class="col-md-6 offset-md-9">
             <button type="submit" style="margin: 5px" class="btn btn-primary">Войти</button>
         </div>
     </div>
 </form>
+<jsp:include page="../_alert.jsp"/>
 <jsp:include page="../_footer.jsp"/>
 </body>
 </html>
