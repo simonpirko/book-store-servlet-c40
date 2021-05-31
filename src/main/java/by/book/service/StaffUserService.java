@@ -2,6 +2,7 @@ package by.book.service;
 
 import by.book.dao.UserDao;
 import by.book.dao.inmemory.InMemoryUserDao;
+import by.book.dao.postgres.PgUserDao;
 import by.book.entity.Role;
 import by.book.entity.User;
 import by.book.exception.DaoException;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StaffUserService {
-    private UserDao userDao = new InMemoryUserDao();
+    private UserDao userDao = new PgUserDao();
 
     public List<User> getAll(String role) {
 
@@ -68,7 +69,7 @@ public class StaffUserService {
     }
 
     private int validaAndTransformStringToInt(String param) throws InvalidRequestException {
-        if(param == null || param.trim() == "") throw new InvalidRequestException();
+        if(param == null || param.trim().equals("")) throw new InvalidRequestException();
 
         int paramInt;
         try {
@@ -80,6 +81,6 @@ public class StaffUserService {
     }
 
     private void validationParam(String param) throws InvalidRequestException {
-        if(param == null || param.trim() == "") throw new InvalidRequestException();
+        if(param == null || param.trim().equals("")) throw new InvalidRequestException();
     }
 }
