@@ -67,8 +67,7 @@ public class PgUserDao implements UserDao {
             connection.setAutoCommit(false);
 
             PreparedStatement statement = connection.prepareStatement(INSERT_USER);
-            //TODO change address id
-            statement.setLong(1, 1);
+            statement.setLong(1, user.getAddress().getId());
             statement.setString(2, user.getUsername());
             statement.setString(3, user.getPassword());
             statement.setLong(4, getRole(user.getRole(), connection));
