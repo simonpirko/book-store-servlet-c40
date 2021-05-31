@@ -12,6 +12,8 @@
       <li><hr></li>
       <li><a class="dropdown-item" href="/staff/book">Книги</a></li>
       <li><hr></li>
+      <li><a class="dropdown-item" href="/staff/author">Авторы</a></li>
+      <li><hr></li>
       <li><a class="dropdown-item" href="/staff/user/all">Список пользователей</a></li>
       <li><hr></li>
       <li><a class="dropdown-item" href="/staff/orderList">Список заказов пользователей</a></li>

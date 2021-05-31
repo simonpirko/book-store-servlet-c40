@@ -31,4 +31,9 @@ public class Author {
     public int hashCode() {
         return Objects.hash(id);
     }
+    public Author(String firstName, String lastName, String description) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.description = description;
+    }
 }
