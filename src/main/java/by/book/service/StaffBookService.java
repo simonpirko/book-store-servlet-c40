@@ -2,12 +2,13 @@ package by.book.service;
 
 import by.book.dao.AuthorDao;
 import by.book.dao.BookDao;
-import by.book.dao.inmemory.InMemoryAuthorDao;
-import by.book.dao.inmemory.InMemoryBookDao;
+import by.book.dao.postgres.PgAuthorDao;
 import by.book.dao.postgres.PgBookDao;
 import by.book.entity.Author;
 import by.book.entity.Book;
-import by.book.exception.*;
+import by.book.exception.DuplicateDataException;
+import by.book.exception.IncorrectData;
+import by.book.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class StaffBookService {
     private BookDao bookDao = new PgBookDao();
-    private AuthorDao authorDao = new InMemoryAuthorDao();
+    private AuthorDao authorDao = new PgAuthorDao();
 
     public void save(String name, int price, String description, String genre, List<Long> authorsId,LocalDate publicationData) throws IncorrectData, NotFoundException, DuplicateDataException {
         Book book = create(name,price,description,genre,authorsId,publicationData);

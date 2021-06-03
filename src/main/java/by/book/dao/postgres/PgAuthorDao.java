@@ -15,14 +15,14 @@ public class PgAuthorDao implements AuthorDao {
     @Override
     public void save(Author author) {
 
-
         try (Connection connection = ConnectionPool.getConnection()) {
-            String sql = "INSERT INTO author (first_name, last_name, description) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO author (first_name, last_name, description) VALUES (?, ?, ?);";
             PreparedStatement createAuthorPreparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             createAuthorPreparedStatement.setString(1, author.getFirstName());
             createAuthorPreparedStatement.setString(2, author.getLastName());
             createAuthorPreparedStatement.setString(3, author.getDescription());
 
+            createAuthorPreparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class PgAuthorDao implements AuthorDao {
     public void deleteById(long id) {
 
         try (Connection connection = ConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM author WHERE id == ?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM author WHERE id=?;");
             preparedStatement.setLong(1, id);
             preparedStatement.execute();
 
@@ -71,7 +71,7 @@ public class PgAuthorDao implements AuthorDao {
         Author author = new Author();
 
         try (Connection connection = ConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM author WHERE id == ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM author WHERE id=?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -87,7 +87,7 @@ public class PgAuthorDao implements AuthorDao {
     public void updateFirstName(long id, String name) {
 
         try (Connection connection = ConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE author SET first_name = ? WHERE id == ?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE author SET first_name=? WHERE id=?;");
             preparedStatement.setLong(2, id);
             preparedStatement.setString(1, name);
             preparedStatement.executeUpdate();
@@ -99,7 +99,7 @@ public class PgAuthorDao implements AuthorDao {
     @Override
     public void updateLastName(long id, String name) {
         try (Connection connection = ConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE author SET last_name = ? WHERE id == ?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE author SET last_name = ? WHERE id=?;");
             preparedStatement.setString(1, name);
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
@@ -111,10 +111,10 @@ public class PgAuthorDao implements AuthorDao {
     }
 
     @Override
-    public void updateDescription(long id, String name) {
+    public void updateDescription(long id, String description) {
         try (Connection connection = ConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE author SET description = ? WHERE id == ?;");
-            preparedStatement.setString(1, name);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE author SET description = ? WHERE id=?;");
+            preparedStatement.setString(1, description);
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
 
@@ -126,11 +126,11 @@ public class PgAuthorDao implements AuthorDao {
     @Override
     public boolean contains(String fName, String lName) {
         try(Connection connection = ConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT FROM author WHERE first_name=? & last_name = ?;", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT FROM author WHERE first_name=? AND last_name=?;", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setString(1, fName);
             preparedStatement.setString(2, lName);
             ResultSet resultSet = preparedStatement.executeQuery();
-            return getLengthResultSet(resultSet) != 0;
+            return getLengthResultSet(preparedStatement.executeQuery()) != 0;
         } catch (SQLException e) {
             throw new DaoException();
         }
@@ -156,3 +156,7 @@ public class PgAuthorDao implements AuthorDao {
                 resultSet.getString("description"));
     }
 }
+
+
+
+
