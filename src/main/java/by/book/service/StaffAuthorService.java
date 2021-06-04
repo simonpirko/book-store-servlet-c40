@@ -1,18 +1,15 @@
 package by.book.service;
 
 import by.book.dao.AuthorDao;
-import by.book.dao.inmemory.InMemoryAuthorDao;
+import by.book.dao.postgres.PgAuthorDao;
 import by.book.entity.Author;
-import by.book.exception.DaoException;
 import by.book.exception.DuplicateDataException;
-import by.book.exception.InvalidRequestException;
 import by.book.exception.NotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StaffAuthorService {
-    AuthorDao authorDao = new InMemoryAuthorDao();
+    AuthorDao authorDao = new PgAuthorDao();
 
     public Author getById(long id) throws NotFoundException {
         if(authorDao.containsId(id)){
