@@ -3,7 +3,9 @@ package by.book.service;
 import by.book.dao.AuthorDao;
 import by.book.dao.postgres.PgAuthorDao;
 import by.book.entity.Author;
+import by.book.exception.DaoException;
 import by.book.exception.DuplicateDataException;
+import by.book.exception.InvalidRequestException;
 import by.book.exception.NotFoundException;
 
 import java.util.List;
@@ -51,7 +53,7 @@ public class StaffAuthorService {
         validationParam(description);
         return new Author(fName, lName, description);
     }
-    public void containsUpdate(Author authorUpdate) throws DaoException{
+    public void containsUpdate(Author authorUpdate) throws DaoException {
         for (Author author : getAll()){
             if (authorUpdate.getFirstName().equals(author.getFirstName())
                     & authorUpdate.getLastName().equals(author.getLastName())

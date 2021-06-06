@@ -2,6 +2,7 @@ package by.book.service;
 
 import by.book.dao.StoreDao;
 import by.book.dao.inmemory.InMemoryStoreDao;
+import by.book.dao.postgres.PgStoreDao;
 import by.book.entity.Address;
 import by.book.entity.Store;
 import by.book.exception.*;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StaffStoreService {
-    private StoreDao storeDao = new InMemoryStoreDao();
+    private StoreDao storeDao = new PgStoreDao();
 
     public void create(String name, String street, String house) throws InvalidRequestException, DuplicateDataException, ServerErrorException {
         validationParam(name);
@@ -19,10 +20,9 @@ public class StaffStoreService {
 
         Address address = new Address(0, street.trim(), houseInt);
 
-        try {
-            storeDao.getByAddress(address);
-            throw new DuplicateDataException("address");
-        } catch (DaoException e) {}
+        if(storeDao.contains(address)){
+            throw new DuplicateDataException();
+        }
 
         Store store = new Store(0, address, name.trim(), new ArrayList<>());
 

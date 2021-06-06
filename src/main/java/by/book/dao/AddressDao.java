@@ -16,5 +16,7 @@ public interface AddressDao {
     void updateStreet(long id, String street);
     void updateHome(long id, int home);
     boolean contains(Address address);
+    long saveReturnId(Address address);
+    long containsReturnId(Address address);
 
 }
