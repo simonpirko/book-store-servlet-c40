@@ -87,4 +87,14 @@ public class InMemoryAddressDao implements AddressDao {
         }
         return false;
     }
+
+    @Override
+    public long saveReturnId(Address address) {
+        return 0;
+    }
+
+    @Override
+    public long containsReturnId(Address address) {
+        return 0;
+    }
 }

@@ -18,7 +18,6 @@ public class StoreDeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         try {
             staffStoreService.delete(req.getParameter("id"));
             req.setAttribute("message", "Магазин успешно удален");
@@ -29,6 +28,7 @@ public class StoreDeleteServlet extends HttpServlet {
         } catch (ServerErrorException e) {
             req.setAttribute("message", "Произошла ошибка. Попробуйте повторить запрос через некоторое время");
         }
+        req.setAttribute("storeList", staffStoreService.getAll());
         getServletContext().getRequestDispatcher("/pages/staff/storeList.jsp").forward(req, resp);
     }
 }
