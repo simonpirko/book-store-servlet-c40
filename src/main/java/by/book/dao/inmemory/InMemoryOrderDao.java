@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryOrderDao implements OrderDao {
-    private List<Order> orderList = new ArrayList<>();
-    private int idOrder = 1;
+    private static List<Order> orderList = new ArrayList<>();
+    private static int idOrder = 1;
 
     @Override
     public void addBook(long id, Book book) {
@@ -60,17 +60,6 @@ public class InMemoryOrderDao implements OrderDao {
     }
 
     @Override
-    public List<Order> getOrderByStore(Store store) {
-        List<Order> listOrderByStore = new ArrayList<>();
-        for (Order order : orderList) {
-            if (order.getStore().equals(store)) {
-                listOrderByStore.add(order);
-            }
-        }
-        return listOrderByStore;
-    }
-
-    @Override
     public List<Order> getOrderByAddress(Address address) {
         List<Order> listOrderByAddress = new ArrayList<>();
         for (Order order : orderList) {
@@ -85,7 +74,7 @@ public class InMemoryOrderDao implements OrderDao {
     public List<Order> getOrderByUsername(String username) {
         List<Order> listOrderByUser = new ArrayList<>();
         for (Order order : orderList) {
-            if (order.getUser().getUsername() == username) {
+            if (order.getUser().getUsername().equals(username)) {
                 listOrderByUser.add(order);
             }
         }

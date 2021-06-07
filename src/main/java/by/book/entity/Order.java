@@ -15,7 +15,6 @@ public class Order {
     private User user;
     private Address address;
     private int totalPrice;
-    private Store store;
     private Type type;
     private OrderStatus status;
     private LocalDate orderDate;
