@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -6,7 +5,7 @@
     <title>ListOrder</title>
 </head>
 <body>
-<jsp:include page="../_header.jsp" />
+<jsp:include page="../_header.jsp"/>
 
 <div class="container">
     <div class="row">
@@ -32,6 +31,7 @@
                     <th scope="col">Цена</th>
                     <th scope="col">Адрес</th>
                     <th scope="col">Статус</th>
+                    <th scope="col">Тип доставки</th>
                     <th scope="col">Дата заказа</th>
                 </tr>
                 </thead>
@@ -40,10 +40,18 @@
                     <tr>
                         <th>${order.id}</th>
                         <th>${order.user}</th>
-                        <th>${order.bookList}</th>
+                        <th>
+                            <c:forEach items="${order.bookList}" var="book">
+                                ${book.name}
+                                <c:forEach items="${book.authors}" var="author">
+                                    ${author.firstName} ${author.lastName}
+                                </c:forEach> <br></br>
+                            </c:forEach>
+                        </th>
                         <th>${order.totalPrice}</th>
                         <th>${order.address}</th>
                         <th>${order.status}</th>
+                        <th>${order.type}</th>
                         <th>${order.orderDate}</th>
 
                     </tr>
@@ -54,7 +62,7 @@
     </div>
 </div>
 
-<jsp:include page="../_alert.jsp" />
-<jsp:include page="../_footer.jsp" />
+<jsp:include page="../_alert.jsp"/>
+<jsp:include page="../_footer.jsp"/>
 </body>
 </html>

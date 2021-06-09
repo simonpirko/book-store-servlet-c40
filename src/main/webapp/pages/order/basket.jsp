@@ -26,51 +26,60 @@
             </nav>
         </div>
     </div>
-    <c:if test="${requestScope.listBook == null}">
-        ${requestScope.message}
+    <div>
+        <c:if test="${requestScope.listBook == null}">
+            ${requestScope.message}
 
-        <div class="col-md-12 mt-2">
-            <a href="/selection" class="btn btn-outline-primary">Перейти к товарам</a>
-        </div>
-    </c:if>
-    <c:if test="${requestScope.listBook != null}">
-        <div class="col-md-12 mt-2 mb-2">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Книга</th>
-                    <th scope="col">Автор</th>
-                    <th scope="col">Цена</th>
-                    <th scope="col">Количество</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${requestScope.listBook}" var="book">
-                    <th>${book.id}</th>
-                    <th>${book.name}</th>
-                    <th>${book.authors}</th>
-                    <th>${book.price}</th>
-                    <th></th>
-                    <td>
-                        <form method="post" action="/basket/remove"
-                              onsubmit="return confirm('Вы действительно хотите удалить данную книгу из корзины?')">
+            <div class="col-md-12 mt-2">
+                <a href="/selection" class="btn btn-outline-primary">Перейти к товарам</a>
+            </div>
+        </c:if>
+    </div>
+    <div>
+        <c:if test="${requestScope.listBook != null}">
+            <h5>Список книг</h5>
+            <div class="col-md-12 mt-2 mb-2">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Книга</th>
+                        <th scope="col">Жанр</th>
+                        <th scope="col">Авторы</th>
+                        <th scope="col">Цена</th>
+                        <th scope="col">Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${requestScope.listBook}" var="book">
+                            <tr>
+                                <th>${book.id}</th>
+                                <th>${book.name}</th>
+                                <th>${book.genre}</th>
+                                <th>
+                                    <c:forEach items="${book.authors}" var="author">
+                                        ${author.firstName} ${author.lastName}<br></br>
+                                    </c:forEach>
+                                </th>
+                                <th>${book.price}</th>
+                                <td>
+                                    <form method="post" action="/basket"
+                                          onsubmit="return confirm('Вы действительно хотите удалить данную книгу из корзины?')">
 
-                            <input type="hidden" name="id" value="${book.id}">
-                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
-                        </form>
-                    </td>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
+                                        <input type="hidden" name="id" value="${book.id}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
 
-        <p><b>Цена заказа: </b>${requestScope.totalPrice}</p>
-
-        <div class="col-md-12 mt-2">
-            <a href="/profile/order" class="btn btn-outline-primary">Перейти к созданию заказа</a>
-        </div>
-
+            <p><b>Цена заказа: </b>${requestScope.totalPrice}</p>
+            <div class="col-md-12 mt-2">
+                <a href="/order" class="btn btn-outline-primary">Перейти к созданию заказа</a>
+            </div>
         </c:if>
     </div>
 </div>

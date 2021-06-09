@@ -12,7 +12,7 @@ public interface OrderDao {
     void save(Order order);
     void deleteById(long id);
     Order getById(long id);
-    List<Order> getOrderByStore(Store store);
+//    List<Order> getOrderByStore(Store store);
     List<Order> getOrderByAddress(Address address);
     List<Order> getOrderByUsername(String username);
     List<Order> getAll();

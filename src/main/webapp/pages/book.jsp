@@ -32,7 +32,7 @@
                 </figure>
 
                 <h3>${requestScope.book.price} руб.</h3>
-                <form method="post" action="/basket" onsubmit="return confirm('Книга добавлена в корзину')">
+                <form method="post" action="/book" onsubmit="return confirm('Книга добавлена в корзину')">
 
                     <input type="hidden" name="id" value="${book.id}">
                     <button type="submit" class="btn btn-warning">Положить в корзину</button>

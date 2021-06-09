@@ -31,6 +31,7 @@
                     <th scope="col">Цена</th>
                     <th scope="col">Адрес</th>
                     <th scope="col">Статус</th>
+                    <th scope="col">Тип Доставки</th>
                     <th scope="col">Дата заказа</th>
                 </tr>
                 </thead>
@@ -38,10 +39,18 @@
                 <c:forEach items="${requestScope.listOrder}" var="order">
                     <tr>
                         <th>${order.id}</th>
-                        <th>${order.bookList}</th>
+                        <th>
+                            <c:forEach items="${order.bookList}" var="book">
+                                "${book.name}"
+                                <c:forEach items="${book.authors}" var="author">
+                                    ${author.firstName} ${author.lastName}
+                                </c:forEach> <br></br>
+                            </c:forEach>
+                        </th>
                         <th>${order.totalPrice}</th>
-                        <th>${order.address}</th>
+                        <th>${order.address.street} ${order.address.home}</th>
                         <th>${order.status}</th>
+                        <th>${order.type}</th>
                         <th>${order.orderDate}</th>
 
                     </tr>

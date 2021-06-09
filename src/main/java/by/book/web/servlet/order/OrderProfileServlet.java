@@ -1,7 +1,6 @@
 package by.book.web.servlet.order;
 
 import by.book.entity.User;
-import by.book.exception.UserDataException;
 import by.book.service.OrderService;
 
 import javax.servlet.ServletException;
@@ -17,11 +16,6 @@ public class OrderProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher("/pages/order/orderProfile.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
         req.setAttribute("listOrder", orderService.getOrderByUsername(user.getUsername()));
         req.getServletContext().getRequestDispatcher("/pages/order/orderProfile.jsp").forward(req, resp);
